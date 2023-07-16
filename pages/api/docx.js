@@ -2,14 +2,13 @@ import fs from "fs";
 import path from "path";
 import mammoth from "mammoth";
 import { JSDOM } from "jsdom";
-import { data } from "autoprefixer";
 
-function processDocx(arrayBuffer) {
-  // console.log({ arrayBuffer });
+function processDocx(docxPath) {
+  console.log({ docxPath });
 
   return new Promise((resolve, reject) => {
     mammoth
-      .convertToHtml({ arrayBuffer: arrayBuffer })
+      .convertToHtml({ path: docxPath })
       .then((convertedtoHtml) => {
         console.log({ convertedtoHtml });
       })
@@ -45,16 +44,20 @@ function processDocx(arrayBuffer) {
 }
 
 export default async function handler(req, res) {
-  const docxPath = path.join(process.cwd(), "public", "StrangeRipples.docx");
-  // console.log({ docxPath });
+  const docxPath = path.join(
+    process.cwd(),
+    "public",
+    "StrangeRipplesTest.docx"
+  );
+  console.log({ docxPath });
   // const docxPath = path.resolve(process.cwd(), 'public/StrangeRipples.docx');
 
-  const data = fs.readFileSync(docxPath);
+  // const data = fs.readFileSync(docxPath);
 
-  const arrayBuffer = Uint8Array.from(data).buffer;
+  // const arrayBuffer = Uint8Array.from(data).buffer;
 
   try {
-    const html = await processDocx(arrayBuffer);
+    const html = await processDocx(docxPath);
     res.status(200).json({ html });
   } catch (err) {
     console.log("caught an error", err);
