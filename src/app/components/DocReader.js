@@ -23,8 +23,6 @@ const DocxReader = () => {
   return (
     <div className="test class">
       <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-      {/* {htmlContent} */}
-      Hello World
     </div>
   );
 };
