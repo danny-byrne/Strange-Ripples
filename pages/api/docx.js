@@ -4,38 +4,32 @@ import mammoth from "mammoth";
 import { JSDOM } from "jsdom";
 
 function processDocx(docxPath) {
-  console.log({ docxPath });
-
   return new Promise((resolve, reject) => {
     mammoth
       .convertToHtml({ path: docxPath })
-      .then((convertedtoHtml) => {
-        console.log({ convertedtoHtml });
-      })
-      .then(function (result) {
+      .then((result) => {
         let html = result.value;
-        console.log({ html, arrayBuffer });
 
         let dom = new JSDOM(html);
-        let quoteElements = dom.window.document.getElementsByTagName("quote");
-        for (let quoteElement of quoteElements) {
-          let blockquote = dom.window.document.createElement("blockquote");
-          blockquote.innerHTML = quoteElement.innerHTML;
-          quoteElement.parentNode.replaceChild(blockquote, quoteElement);
-        }
+        // let quoteElements = dom.window.document.getElementsByTagName("quote");
+        // for (let quoteElement of quoteElements) {
+        //   let blockquote = dom.window.document.createElement("blockquote");
+        //   blockquote.innerHTML = quoteElement.innerHTML;
+        //   quoteElement.parentNode.replaceChild(blockquote, quoteElement);
+        // }
 
-        let textNodes = dom.window.document.body.childNodes;
-        for (let textNode of textNodes) {
-          if (textNode.nodeType === dom.window.Node.TEXT_NODE) {
-            let paragraphs = textNode.textContent.split("\n\n");
-            for (let i = 0; i < paragraphs.length - 1; i++) {
-              let p = dom.window.document.createElement("p");
-              p.textContent = paragraphs[i];
-              dom.window.document.body.insertBefore(p, textNode);
-            }
-            textNode.textContent = paragraphs[paragraphs.length - 1];
-          }
-        }
+        // let textNodes = dom.window.document.body.childNodes;
+        // for (let textNode of textNodes) {
+        //   if (textNode.nodeType === dom.window.Node.TEXT_NODE) {
+        //     let paragraphs = textNode.textContent.split("\n\n");
+        //     for (let i = 0; i < paragraphs.length - 1; i++) {
+        //       let p = dom.window.document.createElement("p");
+        //       p.textContent = paragraphs[i];
+        //       dom.window.document.body.insertBefore(p, textNode);
+        //     }
+        //     textNode.textContent = paragraphs[paragraphs.length - 1];
+        //   }
+        // }
 
         resolve(dom.serialize());
       })
@@ -49,12 +43,6 @@ export default async function handler(req, res) {
     "public",
     "StrangeRipplesTest.docx"
   );
-  console.log({ docxPath });
-  // const docxPath = path.resolve(process.cwd(), 'public/StrangeRipples.docx');
-
-  // const data = fs.readFileSync(docxPath);
-
-  // const arrayBuffer = Uint8Array.from(data).buffer;
 
   try {
     const html = await processDocx(docxPath);
@@ -63,7 +51,4 @@ export default async function handler(req, res) {
     console.log("caught an error", err);
     res.status(500).json({ error: "Error reading .docx file" });
   }
-
-  // const arrayBuffer = fs.readFileSync(docxPath).buffer;
-  // console.log({html})
 }
