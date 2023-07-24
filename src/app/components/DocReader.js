@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+import parse from "html-react-parser";
 
 const strangeRippleImageIdAsKeyPathAsValues = {
   carlJung: { id: "carlJung", path: "https://i.imgur.com/4QZKX0M.png" },
@@ -12,7 +12,7 @@ const strangeRippleImageIdAsKeyPathAsValues = {
 
 const DocxReader = () => {
   const [htmlContent, setHtmlContent] = useState("");
-  const [mounted, setMounted] = useState(false);
+  // const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     console.log({ htmlContent });
@@ -39,20 +39,23 @@ const DocxReader = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  useEffect(() => {
-    if (htmlContent) {
-      ReactDOM.render(
-        <img src="./images/ayaUFOs.png" />,
-        document.getElementById("ayaUFOs")
+  const replaceDOM = (node) => {
+    if (
+      node.attribs &&
+      node.attribs.id &&
+      strangeRippleImageIdAsKeyPathAsValues[node.attribs.id]
+    ) {
+      return (
+        <img
+          src={strangeRippleImageIdAsKeyPathAsValues[node.attribs.id].path}
+        />
       );
-
-      // setMounted(true);
     }
-  }, [htmlContent]);
+  };
 
   return (
     <div className="test class">
-      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+      {parse(htmlContent, { replace: replaceDOM })}
     </div>
   );
 };
