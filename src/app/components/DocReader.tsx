@@ -74,8 +74,14 @@ const DocxReader: React.FC = () => {
   //TODONEXT: just load
 
   const content = parse(htmlContent, { transform: replaceDOM });
+  console.log({ content });
 
-  return <div id="test class">{content}</div>;
+  return (
+    <>
+      {/* <div id="test class">Hello</div> */}
+      <div id="test class" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    </>
+  );
 };
 
 export default DocxReader;
