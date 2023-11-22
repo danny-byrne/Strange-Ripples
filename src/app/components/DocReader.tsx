@@ -18,7 +18,7 @@ const DocxReader: React.FC = () => {
   const [htmlContent, setHtmlContent] = useState("");
 
   useEffect(() => {
-    console.log({ htmlContent });
+    console.log("htmlContent: ", htmlContent);
   }, [htmlContent]);
 
   useEffect(() => {
@@ -35,7 +35,6 @@ const DocxReader: React.FC = () => {
     domNode: any,
     index: number
   ): React.ReactElement | null => {
-    console.log({ domNode });
     if (
       domNode.type === "tag" &&
       domNode.name === "p" &&
@@ -71,15 +70,17 @@ const DocxReader: React.FC = () => {
     }
   };
 
-  //TODONEXT: just load
+  //TODONEXT: figure out
 
-  const content = parse(htmlContent, { transform: replaceDOM });
+  // const content = parse(htmlContent, { transform: replaceDOM });
+  const content = parse(htmlContent);
   console.log({ content });
 
   return (
     <>
       {/* <div id="test class">Hello</div> */}
-      <div id="test class" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+      {/* <div id="test class" dangerouslySetInnerHTML={{ __html: content }} /> */}
+      <div id="test class">{content}</div>
     </>
   );
 };
