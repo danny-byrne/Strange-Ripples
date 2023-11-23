@@ -6,11 +6,13 @@ function processDocx(docxPath) {
   return new Promise((resolve, reject) => {
     mammoth
       .convertToHtml({ path: docxPath })
+      // .extractRawText({ path: docxPath })
       .then((result) => {
-        let html = result.value;
-        console.log({ html });
-
-        let dom = new JSDOM(html);
+        const rawText = result.value;
+        // Process raw text and convert it to HTML
+        const convertedHtml = processRawText(rawText);
+        // resolve(convertedHtml);
+        let dom = new JSDOM(convertedHtml);
 
         console.log({ dom });
 
@@ -18,6 +20,12 @@ function processDocx(docxPath) {
       })
       .catch(reject);
   });
+}
+
+function processRawText(rawText) {
+  // Replace HTML entities
+  const htmlText = rawText.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  return `<html><body>${htmlText}</body></html>`;
 }
 
 export default async function handler(req, res) {
