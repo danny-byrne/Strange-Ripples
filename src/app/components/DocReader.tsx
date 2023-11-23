@@ -5,7 +5,7 @@ type ImageMap = {
   [key: string]: { id: string; path: string };
 };
 
-const strangeRippleImageIdAsKeyPathAsValues: ImageMap = {
+const imagePaths: ImageMap = {
   carlJung: { id: "carlJung", path: "https://i.imgur.com/4QZKX0M.png" },
   carlJungBookImage: {
     id: "carlBookImage",
@@ -41,16 +41,8 @@ const DocxReader: React.FC = () => {
       domNode.children?.[0]?.data
     ) {
       const key = domNode.children[0].data;
-      if (key in strangeRippleImageIdAsKeyPathAsValues) {
-        return (
-          <div
-            id={
-              strangeRippleImageIdAsKeyPathAsValues[
-                key as keyof typeof strangeRippleImageIdAsKeyPathAsValues
-              ].id
-            }
-          ></div>
-        );
+      if (key in imagePaths) {
+        return <div id={imagePaths[key as keyof typeof imagePaths].id}></div>;
       }
     }
     return null; // Returning null when you don't want to replace anything
@@ -62,9 +54,9 @@ const DocxReader: React.FC = () => {
     index: number
   ) => {
     if (domNode.name === "p") {
-      for (let key in strangeRippleImageIdAsKeyPathAsValues) {
+      for (let key in imagePaths) {
         if (domNode.children[0].data === `<${key}>`) {
-          return <div id={strangeRippleImageIdAsKeyPathAsValues[key].id}></div>;
+          return <div id={imagePaths[key].id}></div>;
         }
       }
     }
@@ -107,9 +99,11 @@ const DocxReader: React.FC = () => {
         domNode.type === "tag" &&
         "attribs" in domNode &&
         domNode.attribs &&
-        domNode.attribs.id
+        domNode.attribs.id &&
+        imagePaths[domNode.attribs.id]
       ) {
         console.log("id: ", domNode.attribs.id);
+        return <img src={imagePaths[domNode.attribs.id].path} />;
       }
     },
   };
