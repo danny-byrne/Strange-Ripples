@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import parse, { DOMNode, domToReact } from "html-react-parser";
+import BlogImage from "./BlogImage";
 
 type ImageMap = {
   [key: string]: { id: string; path: string };
@@ -11,7 +12,7 @@ const imagePaths: ImageMap = {
     id: "carlBookImage",
     path: "https://i.imgur.com/4QZKX0M.png",
   },
-  ayaUFOs: { id: "ayaUFOs", path: "./images/ayaUFOs.png" },
+  ayaUFOs: { id: "ayaUFOs", path: "/images/ayaUFOs.png" },
 };
 
 const DocxReader: React.FC = () => {
@@ -103,10 +104,13 @@ const DocxReader: React.FC = () => {
         imagePaths[domNode.attribs.id]
       ) {
         console.log("id: ", domNode.attribs.id);
-        return <img src={imagePaths[domNode.attribs.id].path} />;
+        // return <img src={imagePaths[domNode.attribs.id].path} />;
+        return <BlogImage src={imagePaths[domNode.attribs.id].path} />;
       }
     },
   };
+
+  //todo, create image component with caption
 
   const content = parse(htmlContent, options);
   console.log({ content });
