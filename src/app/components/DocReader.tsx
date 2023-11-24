@@ -3,7 +3,7 @@ import parse, { DOMNode, domToReact } from "html-react-parser";
 import BlogImage from "./BlogImage";
 
 type ImageMap = {
-  [key: string]: { id: string; path: string };
+  [key: string]: { id: string; path: string; subcaption?: string };
 };
 
 const imagePaths: ImageMap = {
@@ -12,7 +12,7 @@ const imagePaths: ImageMap = {
     id: "carlBookImage",
     path: "https://i.imgur.com/4QZKX0M.png",
   },
-  ayaUFOs: { id: "ayaUFOs", path: "/images/ayaUFOs.png" },
+  ayaUFOs: { id: "ayaUFOs", path: "/images/ayaUFOs.png", subcaption: "" },
 };
 
 const DocxReader: React.FC = () => {
