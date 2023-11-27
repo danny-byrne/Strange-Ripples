@@ -10,11 +10,11 @@ function processDocx(docxPath) {
       .then((result) => {
         const rawText = result.value;
         // Process raw text and convert it to HTML
-        const convertedHtml = processRawText(rawText);
+        const convertedHtml = removeFalselyParsedImgTagsRawText(rawText);
         // resolve(convertedHtml);
         let dom = new JSDOM(convertedHtml);
 
-        console.log({ dom });
+        // console.log({ dom });
 
         resolve(dom.serialize());
       })
@@ -22,7 +22,7 @@ function processDocx(docxPath) {
   });
 }
 
-function processRawText(rawText) {
+function removeFalselyParsedImgTagsRawText(rawText) {
   // Replace HTML entities
   const htmlText = rawText.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
   return `<html><body>${htmlText}</body></html>`;
@@ -37,8 +37,8 @@ export default async function handler(req, res) {
 
   try {
     const html = await processDocx(docxPath);
-    console.log("in handler");
-    console.log({ html });
+    // console.log("in handler");
+    // console.log({ html });
     res.status(200).json({ html });
   } catch (err) {
     console.log("caught an error", err);

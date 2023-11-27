@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from "react";
-import parse, { DOMNode, domToReact } from "html-react-parser";
+import parse, { DOMNode } from "html-react-parser";
 import BlogImage from "./BlogImage";
 
 type ImageMap = {
-  [key: string]: { id: string; path: string; subcaption?: string };
+  [key: string]: { id: string; path: string; caption?: string };
 };
 
 const imagePaths: ImageMap = {
-  carlJung: { id: "carlJung", path: "https://i.imgur.com/4QZKX0M.png" },
-  carlJungBookImage: {
-    id: "carlBookImage",
+  carlJung: {
+    id: "carlJung",
     path: "https://i.imgur.com/4QZKX0M.png",
+    caption: "Carl Jung",
   },
-  ayaUFOs: { id: "ayaUFOs", path: "/images/ayaUFOs.png", subcaption: "" },
+  carlBookImage: {
+    id: "carlBookImage",
+    path: "/images/CarlJungBook.png",
+    caption: "Carl Jung's Essay on UFOs was published in 1957.",
+  },
+  ayaUFOs: {
+    id: "ayaUFOs",
+    path: "/images/ayaUFOs.png",
+    caption:
+      "Fanciful UFO like objects depicted in the Ayahuasca inspired artwork of Pablo Amaringo.",
+  },
 };
 
 const DocxReader: React.FC = () => {
@@ -31,67 +41,6 @@ const DocxReader: React.FC = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  const replaceDOM = (
-    reactNode: string | React.ReactElement,
-    domNode: any,
-    index: number
-  ): React.ReactElement | null => {
-    if (
-      domNode.type === "tag" &&
-      domNode.name === "p" &&
-      domNode.children?.[0]?.data
-    ) {
-      const key = domNode.children[0].data;
-      if (key in imagePaths) {
-        return <div id={imagePaths[key as keyof typeof imagePaths].id}></div>;
-      }
-    }
-    return null; // Returning null when you don't want to replace anything
-  };
-
-  const replaceDOMTwo = (
-    reactNode: string | React.ReactElement,
-    domNode: any,
-    index: number
-  ) => {
-    if (domNode.name === "p") {
-      for (let key in imagePaths) {
-        if (domNode.children[0].data === `<${key}>`) {
-          return <div id={imagePaths[key].id}></div>;
-        }
-      }
-    }
-  };
-
-  //TODONEXT: figure out parse with obj.transform as second arg
-
-  // const content = parse(htmlContent, { transform: replaceDOM });
-
-  // const options = {
-  //   replace({ attribs, children }: { attribs: any; children: any[] }) {
-  //     if (!attribs) {
-  //       return;
-  //     }
-
-  //     if (attribs.id) {
-  //       // return <h1 style={{ fontSize: 42 }}>{domToReact(children, options)}</h1>;
-  //       console.log('id: ', attribs.id);
-  //     }
-
-  //     // if (attribs.id === 'main') {
-  //     //   return <h1 style={{ fontSize: 42 }}>{domToReact(children, options)}</h1>;
-  //     // }
-
-  //     // if (attribs.class === 'prettify') {
-  //     //   return (
-  //     //     <span style={{ color: 'hotpink' }}>
-  //     //       {domToReact(children, options)}
-  //     //     </span>
-  //     //   );
-  //     // }
-  //   },
-  // };
-
   const options = {
     replace(
       domNode: DOMNode
@@ -104,8 +53,9 @@ const DocxReader: React.FC = () => {
         imagePaths[domNode.attribs.id]
       ) {
         console.log("id: ", domNode.attribs.id);
-        // return <img src={imagePaths[domNode.attribs.id].path} />;
-        return <BlogImage src={imagePaths[domNode.attribs.id].path} />;
+
+        const { path, caption } = imagePaths[domNode.attribs.id];
+        return <BlogImage src={path} caption={caption || ""} />;
       }
     },
   };
@@ -119,7 +69,7 @@ const DocxReader: React.FC = () => {
     <>
       {/* <div id="test class">Hello</div> */}
       {/* <div id="test class" dangerouslySetInnerHTML={{ __html: content }} /> */}
-      <div id="test class">{content}</div>
+      <div className="test class">{content}</div>
     </>
   );
 };
