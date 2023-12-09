@@ -45,6 +45,7 @@ const DocxReader: React.FC = () => {
     replace(
       domNode: DOMNode
     ): false | void | object | Element | null | undefined {
+      console.log({ domNode });
       if (
         domNode.type === "tag" &&
         "attribs" in domNode &&
@@ -67,9 +68,10 @@ const DocxReader: React.FC = () => {
 
   return (
     <>
-      {/* <div id="test class">Hello</div> */}
-      {/* <div id="test class" dangerouslySetInnerHTML={{ __html: content }} /> */}
-      <div className="test class">{content}</div>
+      {/* <div className="test"> */}
+      {/* <StyledPage>{content}</StyledPage> */}
+      Hello World Hello World Hello World Hello World Hello World
+      {/* </div> */}
     </>
   );
 };

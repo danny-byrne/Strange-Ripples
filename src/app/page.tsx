@@ -1,13 +1,26 @@
 "use client";
 import dynamic from "next/dynamic";
 
+import styled from "styled-components";
+
+const StyledPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  height: 100vh;
+`;
+
 export default function Home() {
   const DocxReader = dynamic(() => import("./components/DocReader"), {
     ssr: false,
   });
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <DocxReader />
-    </main>
+    <div className="test">
+      <StyledPage>
+        <DocxReader />
+      </StyledPage>
+    </div>
   );
 }
