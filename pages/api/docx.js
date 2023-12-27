@@ -29,11 +29,7 @@ function removeFalselyParsedImgTagsRawText(rawText) {
 }
 
 export default async function handler(req, res) {
-  const docxPath = path.join(
-    process.cwd(),
-    "public",
-    "StrangeRipplesTest.docx"
-  );
+  const docxPath = path.join(process.cwd(), "public", "SRTest.docx");
 
   try {
     const html = await processDocx(docxPath);

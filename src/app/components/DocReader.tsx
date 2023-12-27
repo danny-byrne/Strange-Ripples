@@ -7,21 +7,30 @@ type ImageMap = {
 };
 
 const imagePaths: ImageMap = {
-  carlJung: {
-    id: "carlJung",
-    path: "https://i.imgur.com/4QZKX0M.png",
-    caption: "Carl Jung",
+  testimage: {
+    id: "testimage",
+    path: "/images/image1.png",
+    caption: "Some text image",
   },
-  carlBookImage: {
-    id: "carlBookImage",
-    path: "/images/CarlJungBook.png",
-    caption: "Carl Jung's Essay on UFOs was published in 1957.",
-  },
-  ayaUFOs: {
-    id: "ayaUFOs",
-    path: "/images/ayaUFOs.png",
-    caption:
-      "Fanciful UFO like objects depicted in the Ayahuasca inspired artwork of Pablo Amaringo.",
+};
+
+const options = {
+  replace(
+    domNode: DOMNode
+  ): false | void | object | Element | null | undefined {
+    console.log({ domNode });
+    if (
+      domNode.type === "tag" &&
+      "attribs" in domNode &&
+      domNode.attribs &&
+      domNode.attribs.id &&
+      imagePaths[domNode.attribs.id]
+    ) {
+      console.log("id: ", domNode.attribs.id);
+
+      const { path, caption } = imagePaths[domNode.attribs.id];
+      return <BlogImage src={path} caption={caption || ""} />;
+    }
   },
 };
 
@@ -41,26 +50,6 @@ const DocxReader: React.FC = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  const options = {
-    replace(
-      domNode: DOMNode
-    ): false | void | object | Element | null | undefined {
-      console.log({ domNode });
-      if (
-        domNode.type === "tag" &&
-        "attribs" in domNode &&
-        domNode.attribs &&
-        domNode.attribs.id &&
-        imagePaths[domNode.attribs.id]
-      ) {
-        console.log("id: ", domNode.attribs.id);
-
-        const { path, caption } = imagePaths[domNode.attribs.id];
-        return <BlogImage src={path} caption={caption || ""} />;
-      }
-    },
-  };
-
   //todo, create image component with caption
 
   const content = parse(htmlContent, options);
@@ -69,7 +58,7 @@ const DocxReader: React.FC = () => {
   return (
     <>
       {/* when { content } is uncommented, the blue background disappears 
-      and the the text of the doc is displayed with images, no stylgin is applied
+      and the the text of the doc is displayed with images, no styling is applied
       and the "Hello World" on the lines below do not appear.
     */}
       {content}
