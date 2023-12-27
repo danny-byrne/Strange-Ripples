@@ -68,10 +68,12 @@ const DocxReader: React.FC = () => {
 
   return (
     <>
-      {/* <div className="test"> */}
-      {/* <StyledPage>{content}</StyledPage> */}
+      {/* when { content } is uncommented, the blue background disappears 
+      and the the text of the doc is displayed with images, no stylgin is applied
+      and the "Hello World" on the lines below do not appear.
+    */}
+      {content}
       Hello World Hello World Hello World Hello World Hello World
-      {/* </div> */}
     </>
   );
 };

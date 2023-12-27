@@ -8,7 +8,7 @@ const StyledPage = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  background-color: blue;
   height: 100vh;
 `;
 
