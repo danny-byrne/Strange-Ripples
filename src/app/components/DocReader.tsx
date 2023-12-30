@@ -14,26 +14,6 @@ const imagePaths: ImageMap = {
   },
 };
 
-const options = {
-  replace(
-    domNode: DOMNode
-  ): false | void | object | Element | null | undefined {
-    console.log({ domNode });
-    if (
-      domNode.type === "tag" &&
-      "attribs" in domNode &&
-      domNode.attribs &&
-      domNode.attribs.id &&
-      imagePaths[domNode.attribs.id]
-    ) {
-      console.log("id: ", domNode.attribs.id);
-
-      const { path, caption } = imagePaths[domNode.attribs.id];
-      return <BlogImage src={path} caption={caption || ""} />;
-    }
-  },
-};
-
 const DocxReader: React.FC = () => {
   const [htmlContent, setHtmlContent] = useState("");
 
@@ -50,10 +30,35 @@ const DocxReader: React.FC = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  //todo, create image component with caption
+  const options = {
+    replace(
+      domNode: DOMNode
+    ): false | void | object | Element | null | undefined {
+      console.log({ domNode });
+      if (
+        domNode.type === "tag" &&
+        "attribs" in domNode &&
+        domNode.attribs &&
+        domNode.attribs.id &&
+        imagePaths[domNode.attribs.id]
+      ) {
+        console.log("id: ", domNode.attribs.id);
+
+        const { path, caption } = imagePaths[domNode.attribs.id];
+        return <BlogImage src={path} caption={caption || ""} />;
+      }
+    },
+  };
 
   const content = parse(htmlContent, options);
+
+  const testHtmlString =
+    // "<html><body><div>some other text</div><div>Some test text</div></body></html>";
+    "<div>some other text</div><div>Some test text</div>";
   console.log({ content });
+
+  const testContent = parse(testHtmlString);
+  console.log({ testContent });
 
   return (
     <>
@@ -62,7 +67,8 @@ const DocxReader: React.FC = () => {
       and the "Hello World" on the lines below do not appear.
     */}
       {/* uncomment this to test vvvv */}
-      {/* {content} */}
+      {content}
+      {/* {testContent} */}
       Hello World Hello World Hello World Hello World Hello World
     </>
   );

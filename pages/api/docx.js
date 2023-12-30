@@ -14,9 +14,12 @@ function processDocx(docxPath) {
         // resolve(convertedHtml);
         let dom = new JSDOM(convertedHtml);
 
+        // console.log({ convertedHtml });
+
         // console.log({ dom });
 
-        resolve(dom.serialize());
+        // resolve(dom.serialize());
+        resolve(convertedHtml);
       })
       .catch(reject);
   });
@@ -25,7 +28,8 @@ function processDocx(docxPath) {
 function removeFalselyParsedImgTagsRawText(rawText) {
   // Replace HTML entities
   const htmlText = rawText.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-  return `<html><body>${htmlText}</body></html>`;
+  // return `<html><body>${htmlText}</body></html>`;
+  return `${htmlText}`;
 }
 
 export default async function handler(req, res) {
