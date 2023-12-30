@@ -28,7 +28,8 @@ const StyledPage = styled.div`
   }
 
   p {
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     width: 100%;
   }
 `;

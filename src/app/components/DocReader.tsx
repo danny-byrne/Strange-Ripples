@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import parse, { DOMNode } from "html-react-parser";
+import parse from "html-react-parser";
 import BlogImage from "./BlogImage";
+import QuoteContainer from "./QuoteContainer";
 
 type ImageMap = {
   [key: string]: { id: string; path: string; caption?: string };
@@ -32,20 +33,36 @@ const DocxReader: React.FC = () => {
 
   const options = {
     replace(
-      domNode: DOMNode
-    ): false | void | object | Element | null | undefined {
-      // console.log({ domNode });
-      if (
+      //   domNode: DOMNode
+      // ): false | void | object | Element | null | undefined {
+      domNode: any
+    ) {
+      // console.log({ domNode }, "name:", domNode.name);
+      const isAQuoteBlock = domNode?.attribs?.id === "quote";
+
+      const isAnImageTag =
         domNode.type === "tag" &&
         "attribs" in domNode &&
         domNode.attribs &&
         domNode.attribs.id &&
-        imagePaths[domNode.attribs.id]
-      ) {
-        // console.log("id: ", domNode.attribs.id);
+        imagePaths[domNode.attribs.id];
 
+      if (isAnImageTag) {
         const { path, caption } = imagePaths[domNode.attribs.id];
         return <BlogImage src={path} caption={caption || ""} />;
+      } else if (isAQuoteBlock) {
+        console.log({ domNode });
+        let content = "";
+        for (let i = 0; i < domNode.children.length; i++) {
+          const child = domNode.children[i];
+          if (child.type === "text") {
+            content += child.data;
+          }
+        }
+        console.log({ content });
+        // const content = domNode.children[0].data;
+        return <QuoteContainer content={content} />;
+        // console.log({ content });
       }
     },
   };

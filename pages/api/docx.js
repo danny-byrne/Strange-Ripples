@@ -14,10 +14,6 @@ function processDocx(docxPath) {
         // resolve(convertedHtml);
         let dom = new JSDOM(convertedHtml);
 
-        // console.log({ convertedHtml });
-
-        // console.log({ dom });
-
         // resolve(dom.serialize());
         resolve(convertedHtml);
       })
