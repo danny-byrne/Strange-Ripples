@@ -7,8 +7,8 @@ type ImageMap = {
 };
 
 const imagePaths: ImageMap = {
-  testimage: {
-    id: "testimage",
+  testImage: {
+    id: "testImage",
     path: "/images/image1.png",
     caption: "Some text image",
   },
@@ -17,9 +17,9 @@ const imagePaths: ImageMap = {
 const DocxReader: React.FC = () => {
   const [htmlContent, setHtmlContent] = useState("");
 
-  useEffect(() => {
-    console.log("htmlContent: ", htmlContent);
-  }, [htmlContent]);
+  // useEffect(() => {
+  //   console.log("htmlContent: ", htmlContent);
+  // }, [htmlContent]);
 
   useEffect(() => {
     fetch("/api/docx")
@@ -34,7 +34,7 @@ const DocxReader: React.FC = () => {
     replace(
       domNode: DOMNode
     ): false | void | object | Element | null | undefined {
-      console.log({ domNode });
+      // console.log({ domNode });
       if (
         domNode.type === "tag" &&
         "attribs" in domNode &&
@@ -42,7 +42,7 @@ const DocxReader: React.FC = () => {
         domNode.attribs.id &&
         imagePaths[domNode.attribs.id]
       ) {
-        console.log("id: ", domNode.attribs.id);
+        // console.log("id: ", domNode.attribs.id);
 
         const { path, caption } = imagePaths[domNode.attribs.id];
         return <BlogImage src={path} caption={caption || ""} />;
@@ -55,10 +55,10 @@ const DocxReader: React.FC = () => {
   const testHtmlString =
     // "<html><body><div>some other text</div><div>Some test text</div></body></html>";
     "<div>some other text</div><div>Some test text</div>";
-  console.log({ content });
+  // console.log({ content });
 
   const testContent = parse(testHtmlString);
-  console.log({ testContent });
+  // console.log({ testContent });
 
   return (
     <>

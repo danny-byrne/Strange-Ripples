@@ -4,6 +4,12 @@ import styled from "styled-components";
 
 const ImageAndCaptionContainer = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const ImageCaptionColumn = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -18,19 +24,21 @@ type BlogImageProps = {
   src: string;
   caption: string;
 };
-
-const IMAGE_HEIGHT = 200;
+//different height for mobile vs desktop
+const IMAGE_HEIGHT = 400;
 
 const BlogImage: React.FC<BlogImageProps> = ({ src, caption }) => {
   return (
     <ImageAndCaptionContainer>
-      <Image
-        src={src}
-        alt="Blog Image"
-        width={IMAGE_HEIGHT}
-        height={IMAGE_HEIGHT}
-      />
-      <ImageCaption>{caption ?? ""}</ImageCaption>
+      <ImageCaptionColumn>
+        <Image
+          src={src}
+          alt="Blog Image"
+          width={IMAGE_HEIGHT}
+          height={IMAGE_HEIGHT}
+        />
+        <ImageCaption>{caption ?? ""}</ImageCaption>
+      </ImageCaptionColumn>
     </ImageAndCaptionContainer>
   );
 };
