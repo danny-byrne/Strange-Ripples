@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import BlogImage from "./BlogImage";
 import QuoteContainer from "./QuoteContainer";
+import { extractTextNodes, processNode } from "./utils";
 
 type ImageMap = {
   [key: string]: { id: string; path: string; caption?: string };
@@ -15,28 +16,12 @@ const imagePaths: ImageMap = {
   },
 };
 
-function extractTextNodes(domNode, content = []) {
-  // Check if the current node is a text node
-  if (domNode.type === "text" || domNode.type === "tag") {
-    content.push(domNode);
-  }
-
-  // Recursively check children
-  if (domNode.children && domNode.children.length > 0) {
-    domNode.children.forEach((child) => {
-      extractTextNodes(child, content);
-    });
-  }
-
-  return content;
-}
-
 const DocxReader: React.FC = () => {
   const [htmlContent, setHtmlContent] = useState("");
 
-  // useEffect(() => {
-  //   console.log("htmlContent: ", htmlContent);
-  // }, [htmlContent]);
+  useEffect(() => {
+    console.log({ htmlContent });
+  }, [htmlContent]);
 
   useEffect(() => {
     fetch("/api/docx")
@@ -70,11 +55,13 @@ const DocxReader: React.FC = () => {
         return <BlogImage src={path} caption={caption || ""} />;
       } else if (isAQuoteBlock) {
         console.log({ domNode });
-        const content = extractTextNodes(domNode);
-        console.log({ content });
-        // const content = domNode.children[0].data;
-        return <QuoteContainer content={content} />;
-        // console.log({ content });
+        const processedChildren = domNode.children.map((child) =>
+          processNode(child)
+        );
+
+        // Return a React element representing the quote block
+        return <QuoteContainer>{processedChildren}</QuoteContainer>;
+        //this is where I would like to pass the domNode and it's children as a react element to a react component
       }
     },
   };
