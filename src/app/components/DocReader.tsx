@@ -15,6 +15,22 @@ const imagePaths: ImageMap = {
   },
 };
 
+function extractTextNodes(domNode, content = []) {
+  // Check if the current node is a text node
+  if (domNode.type === "text" || domNode.type === "tag") {
+    content.push(domNode);
+  }
+
+  // Recursively check children
+  if (domNode.children && domNode.children.length > 0) {
+    domNode.children.forEach((child) => {
+      extractTextNodes(child, content);
+    });
+  }
+
+  return content;
+}
+
 const DocxReader: React.FC = () => {
   const [htmlContent, setHtmlContent] = useState("");
 
@@ -37,8 +53,10 @@ const DocxReader: React.FC = () => {
       // ): false | void | object | Element | null | undefined {
       domNode: any
     ) {
-      // console.log({ domNode }, "name:", domNode.name);
-      const isAQuoteBlock = domNode?.attribs?.id === "quote";
+      const isAQuoteBlock =
+        domNode?.attribs?.id === "quote" &&
+        domNode?.name === "div" &&
+        domNode?.children?.length > 0;
 
       const isAnImageTag =
         domNode.type === "tag" &&
@@ -52,13 +70,7 @@ const DocxReader: React.FC = () => {
         return <BlogImage src={path} caption={caption || ""} />;
       } else if (isAQuoteBlock) {
         console.log({ domNode });
-        let content = "";
-        for (let i = 0; i < domNode.children.length; i++) {
-          const child = domNode.children[i];
-          if (child.type === "text") {
-            content += child.data;
-          }
-        }
+        const content = extractTextNodes(domNode);
         console.log({ content });
         // const content = domNode.children[0].data;
         return <QuoteContainer content={content} />;
