@@ -30,4 +30,31 @@ const processNode = (node: any) => {
   }
 };
 
-export { processNode };
+const imagePaths: ImageMap = {
+  testImage: {
+    id: "testImage",
+    path: "/images/image1.png",
+    caption: "Some text image",
+  },
+};
+
+const determineNodeType = (domNode: any) => {
+  const isAQuoteBlock =
+    domNode?.attribs?.id === "quote" &&
+    domNode?.name === "div" &&
+    domNode?.children?.length > 0;
+
+  const isAnImageTag =
+    domNode.type === "tag" &&
+    "attribs" in domNode &&
+    domNode.attribs &&
+    domNode.attribs.id &&
+    imagePaths[domNode.attribs.id];
+
+  return {
+    isAQuoteBlock,
+    isAnImageTag,
+  };
+};
+
+export { processNode, determineNodeType, imagePaths };
