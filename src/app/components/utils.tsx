@@ -30,6 +30,10 @@ const processNode = (node: any) => {
   }
 };
 
+type ImageMap = {
+  [key: string]: { id: string; path: string; caption?: string };
+};
+
 const imagePaths: ImageMap = {
   testImage: {
     id: "testImage",

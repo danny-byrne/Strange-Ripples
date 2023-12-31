@@ -4,16 +4,12 @@ import BlogImage from "./BlogImage";
 import QuoteContainer from "./QuoteContainer";
 import { determineNodeType, processNode, imagePaths } from "./utils";
 
-type ImageMap = {
-  [key: string]: { id: string; path: string; caption?: string };
-};
-
 const DocxReader: React.FC = () => {
   const [htmlContent, setHtmlContent] = useState("");
 
-  useEffect(() => {
-    console.log({ htmlContent });
-  }, [htmlContent]);
+  // useEffect(() => {
+  //   console.log({ htmlContent });
+  // }, [htmlContent]);
 
   useEffect(() => {
     fetch("/api/docx")
@@ -32,7 +28,7 @@ const DocxReader: React.FC = () => {
         const { path, caption } = imagePaths[domNode.attribs.id];
         return <BlogImage src={path} caption={caption || ""} />;
       } else if (isAQuoteBlock) {
-        console.log({ domNode });
+        // console.log({ domNode });
         const processedChildren = domNode.children.map((child: any) =>
           processNode(child)
         );
