@@ -71,7 +71,7 @@ const determineNodeType = (domNode: any) => {
 function removeYouTubePrefix(inputString: string): string {
   // Define a regular expression pattern to match the YouTube URL prefix
   const pattern = /https:\/\/youtu\.be\//;
-  console.log({ inputString });
+
   // Use the replace() method to replace the matched pattern with an empty string
   const resultString = inputString.replace(pattern, "");
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import BlogImage from "./BlogImage";
 import QuoteContainer from "./QuoteContainer";
-import YouTube from "react-youtube";
+import VideoContainer from "./VideoContainer";
 import {
   determineNodeType,
   processNode,
@@ -44,7 +44,7 @@ const DocxReader: React.FC = () => {
         const href = domNode?.attribs?.href;
         const videoId = removeYouTubePrefix(href);
         //todo, make UI conainer with caption
-        return <YouTube videoId={videoId} />;
+        return <VideoContainer videoId={videoId} />;
       }
     },
   };
