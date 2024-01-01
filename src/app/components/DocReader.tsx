@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import BlogImage from "./BlogImage";
 import QuoteContainer from "./QuoteContainer";
-import { determineNodeType, processNode, imagePaths } from "./utils";
+import YouTube from "react-youtube";
+import {
+  determineNodeType,
+  processNode,
+  imagePaths,
+  removeYouTubePrefix,
+} from "./utils";
 
 const DocxReader: React.FC = () => {
   const [htmlContent, setHtmlContent] = useState("");
@@ -22,18 +28,23 @@ const DocxReader: React.FC = () => {
 
   const options = {
     replace(domNode: any) {
-      const { isAnImageTag, isAQuoteBlock } = determineNodeType(domNode);
+      const { isAnImageTag, isAQuoteBlock, isAVideoEmbed } =
+        determineNodeType(domNode);
 
       if (isAnImageTag) {
         const { path, caption } = imagePaths[domNode.attribs.id];
         return <BlogImage src={path} caption={caption || ""} />;
       } else if (isAQuoteBlock) {
-        // console.log({ domNode });
         const processedChildren = domNode.children.map((child: any) =>
           processNode(child)
         );
 
         return <QuoteContainer>{processedChildren}</QuoteContainer>;
+      } else if (isAVideoEmbed) {
+        const href = domNode?.attribs?.href;
+        const videoId = removeYouTubePrefix(href);
+        //todo, make UI conainer with caption
+        return <YouTube videoId={videoId} />;
       }
     },
   };
