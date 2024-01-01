@@ -45,7 +45,6 @@ const imagePaths: ImageMap = {
 };
 
 const determineNodeType = (domNode: any) => {
-  // console.log({ domNode });
   const isAQuoteBlock =
     domNode?.attribs?.id === "quote" &&
     domNode?.name === "div" &&
@@ -61,6 +60,7 @@ const determineNodeType = (domNode: any) => {
     domNode.attribs.id &&
     imagePaths[domNode.attribs.id];
 
+  console.log({ domNode, isAQuoteBlock });
   return {
     isAQuoteBlock,
     isAnImageTag,

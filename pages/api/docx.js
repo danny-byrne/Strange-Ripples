@@ -13,7 +13,7 @@ function processDocx(docxPath) {
         const convertedHtml = removeFalselyParsedImgTagsRawText(rawText);
         // resolve(convertedHtml);
         let dom = new JSDOM(convertedHtml);
-        // console.log({ convertedHtml });
+        console.log({ convertedHtml });
         // resolve(dom.serialize());
         resolve(convertedHtml);
       })

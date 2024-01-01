@@ -5,13 +5,15 @@ import styled from "styled-components";
 
 const StyledPage = styled.div`
   width: 100vw;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
+  display: block;
+  overflow: auto;
+
+  // display: flex;
+  // flex-direction: column;
+  // align-items: start;
+  // justify-content: center;
   background-color: blue;
-  height: 100vh;
+
   padding-left: 100px;
   padding-right: 100px;
 
@@ -24,6 +26,7 @@ const StyledPage = styled.div`
     color: green;
     font-size: 2rem;
   }
+
   a {
     text-decoration: underline;
   }
