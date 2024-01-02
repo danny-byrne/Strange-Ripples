@@ -2,28 +2,28 @@
 import dynamic from "next/dynamic";
 
 import styled from "styled-components";
+import { colors } from "./components/utils";
 
 const StyledPage = styled.div`
   width: 100vw;
   display: block;
   overflow: auto;
+  color: ${colors.silver};
 
   // display: flex;
   // flex-direction: column;
   // align-items: start;
   // justify-content: center;
-  background-color: blue;
+  background-color: ${colors.darkGrey};
 
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 550px;
+  padding-right: 550px;
 
   h1 {
-    color: red;
     font-size: 3rem;
   }
 
   h2 {
-    color: green;
     font-size: 2rem;
   }
 
@@ -32,8 +32,8 @@ const StyledPage = styled.div`
   }
 
   p {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 100%;
   }
 `;

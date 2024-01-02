@@ -13,10 +13,6 @@ import {
 const DocxReader: React.FC = () => {
   const [htmlContent, setHtmlContent] = useState("");
 
-  // useEffect(() => {
-  //   console.log({ htmlContent });
-  // }, [htmlContent]);
-
   useEffect(() => {
     fetch("/api/docx")
       .then((response) => response.json())
@@ -35,7 +31,6 @@ const DocxReader: React.FC = () => {
         const { path, caption } = imagePaths[domNode.attribs.id];
         return <BlogImage src={path} caption={caption || ""} />;
       } else if (isAQuoteBlock) {
-        // console.log({ domNode });
         const processedChildren = domNode.children.map((child: any) =>
           processNode(child)
         );
@@ -43,9 +38,7 @@ const DocxReader: React.FC = () => {
         return <QuoteContainer>{processedChildren}</QuoteContainer>;
       } else if (isAVideoEmbed) {
         const href = domNode?.attribs?.href;
-        console.group({ href });
         const videoId = removeYouTubePrefix(href);
-        //todo, make UI conainer with caption
         return <VideoContainer videoId={videoId} />;
       }
     },

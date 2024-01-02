@@ -96,4 +96,16 @@ function removeYouTubePrefix(inputString: string): string {
   return resultString;
 }
 
-export { processNode, determineNodeType, imagePaths, removeYouTubePrefix };
+const colors = {
+  darkGrey: "#555555",
+  silver: "#bbbbbb",
+  shadedGrey: "#666666",
+};
+
+export {
+  processNode,
+  determineNodeType,
+  imagePaths,
+  removeYouTubePrefix,
+  colors,
+};
