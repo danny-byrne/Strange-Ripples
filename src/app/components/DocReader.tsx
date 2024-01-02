@@ -43,6 +43,7 @@ const DocxReader: React.FC = () => {
         return <QuoteContainer>{processedChildren}</QuoteContainer>;
       } else if (isAVideoEmbed) {
         const href = domNode?.attribs?.href;
+        console.group({ href });
         const videoId = removeYouTubePrefix(href);
         //todo, make UI conainer with caption
         return <VideoContainer videoId={videoId} />;

@@ -13,7 +13,7 @@ function processDocx(docxPath) {
         const convertedHtml = removeFalselyParsedImgTagsRawText(rawText);
         // resolve(convertedHtml);
         let dom = new JSDOM(convertedHtml);
-        console.log({ convertedHtml });
+        // console.log({ convertedHtml });
         // resolve(dom.serialize());
         resolve(convertedHtml);
       })
@@ -29,7 +29,7 @@ function removeFalselyParsedImgTagsRawText(rawText) {
 }
 
 export default async function handler(req, res) {
-  const docxPath = path.join(process.cwd(), "public", "SRTest.docx");
+  const docxPath = path.join(process.cwd(), "public", "StrangeRipples.docx");
 
   try {
     const html = await processDocx(docxPath);

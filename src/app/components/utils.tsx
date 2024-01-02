@@ -42,6 +42,23 @@ const imagePaths: ImageMap = {
     path: "/images/image1.png",
     caption: "Some text image",
   },
+  carlJungBookImage: {
+    id: "carlJungBookImage",
+    path: "/images/CarlJungBook.png",
+    caption: "Carl Jung explored why UFOs are commonly encountered in dreams",
+  },
+  magonia: {
+    id: "magonia",
+    path: "/images/Magonia.png",
+    caption:
+      "Jacques Valle wrote Passport to Magonia, in which he explored the UFO phenomenon in relation to human consciousness and pschology",
+  },
+  hynekVallee: {
+    id: "hynekVallee",
+    path: "/images/HynekVallee.png",
+    caption:
+      "J. Allen Hynek and Jacques Vallee were both astronomers who became interested in UFOs",
+  },
 };
 
 const determineNodeType = (domNode: any) => {
@@ -60,7 +77,7 @@ const determineNodeType = (domNode: any) => {
     domNode.attribs.id &&
     imagePaths[domNode.attribs.id];
 
-  console.log({ domNode, isAQuoteBlock });
+  // console.log({ domNode, isAQuoteBlock });
   return {
     isAQuoteBlock,
     isAnImageTag,
@@ -69,6 +86,7 @@ const determineNodeType = (domNode: any) => {
 };
 
 function removeYouTubePrefix(inputString: string): string {
+  console.log({ inputString });
   // Define a regular expression pattern to match the YouTube URL prefix
   const pattern = /https:\/\/youtu\.be\//;
 
