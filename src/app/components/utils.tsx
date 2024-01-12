@@ -77,7 +77,6 @@ const determineNodeType = (domNode: any) => {
     domNode.attribs.id &&
     imagePaths[domNode.attribs.id];
 
-  // console.log({ domNode, isAQuoteBlock });
   return {
     isAQuoteBlock,
     isAnImageTag,
@@ -86,7 +85,6 @@ const determineNodeType = (domNode: any) => {
 };
 
 function removeYouTubePrefix(inputString: string): string {
-  // console.log({ inputString });
   // Define a regular expression pattern to match the YouTube URL prefix
   const pattern = /https:\/\/youtu\.be\//;
 
@@ -95,10 +93,12 @@ function removeYouTubePrefix(inputString: string): string {
 
   return resultString;
 }
-
+//https://calcolor.co/palette/942409461
 const colors = {
   darkGrey: "#555555",
   silver: "#bbbbbb",
+  shadedWhite: "#dddddd",
+  darkWhite: "#cccccc",
   shadedGrey: "#666666",
 };
 

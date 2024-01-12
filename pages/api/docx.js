@@ -2,6 +2,9 @@ import path from "path";
 import mammoth from "mammoth";
 import { JSDOM } from "jsdom";
 
+//TODO: fetch the foc grom my google drive
+// https://chat.openai.com/share/332e9201-dc39-4962-aea3-7c1f66ed8b34
+
 function processDocx(docxPath) {
   return new Promise((resolve, reject) => {
     mammoth

@@ -8,7 +8,7 @@ const StyledPage = styled.div`
   width: 100vw;
   display: block;
   overflow: auto;
-  color: ${colors.silver};
+  color: ${colors.darkWhite};
 
   // display: flex;
   // flex-direction: column;
