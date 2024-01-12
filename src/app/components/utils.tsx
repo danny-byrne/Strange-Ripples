@@ -17,17 +17,25 @@ type QuoteContainerProps = {
   content: Element[];
 };
 
+const voidElements = ["br" /* add other void elements here */];
+
 const processNode = (node: any) => {
   if (node.type === "text") {
     // Text node, just return the text
     return node.data;
   } else if (node.type === "tag") {
+    // Check for void elements
+    if (voidElements.includes(node.name)) {
+      // Return a React element representing the void element without children
+      return React.createElement(node.name);
+    }
+
     // Tag node, process its children
     const processedChildren = node.children.map((child: any) =>
       processNode(child)
     );
 
-    // Return a React element representing the tag
+    // Return a React element representing the tag with its processed children
     return React.createElement(node.name, null, processedChildren);
   }
 };
