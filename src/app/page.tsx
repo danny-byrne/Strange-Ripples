@@ -10,7 +10,7 @@ const BREAKPOINTS = {
   desktop: "1280px",
 };
 
-const StyledPage = styled.div`
+const StyledBlogEntryPage = styled.div`
   width: 100vw;
   display: block;
   overflow: auto;
@@ -62,9 +62,9 @@ export default function Home() {
   });
   return (
     <div className="test">
-      <StyledPage>
+      <StyledBlogEntryPage>
         <DocxReader />
-      </StyledPage>
+      </StyledBlogEntryPage>
     </div>
   );
 }
