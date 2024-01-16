@@ -92,8 +92,6 @@ const determineNodeType = (domNode: any) => {
     domNode.attribs.id &&
     domNode.attribs.id === "horizontalLine";
 
-  // console.log({ domNode });
-
   return {
     isAQuoteBlock,
     isAnImageTag,
@@ -120,10 +118,18 @@ const colors = {
   shadedGrey: "#666666",
 };
 
+//todo hard code numbers
+const BREAKPOINTS = {
+  mobile: "768px",
+  tablet: "1024px",
+  desktop: "1280px",
+};
+
 export {
   processNode,
   determineNodeType,
   imagePaths,
   removeYouTubePrefix,
   colors,
+  BREAKPOINTS,
 };

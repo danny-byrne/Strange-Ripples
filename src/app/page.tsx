@@ -1,13 +1,8 @@
 "use client";
 import dynamic from "next/dynamic";
 import styled from "styled-components";
-import { colors } from "./components/utils";
-
-const BREAKPOINTS = {
-  mobile: "768px",
-  tablet: "1024px",
-  desktop: "1280px",
-};
+import { colors, BREAKPOINTS } from "./components/utils";
+import Layout from "./components/Layout";
 
 const StyledBlogEntryPage = styled.div`
   width: 100vw;
@@ -15,7 +10,7 @@ const StyledBlogEntryPage = styled.div`
   overflow: auto;
   color: ${colors.darkWhite};
   background-color: ${colors.darkGrey};
-
+  padding-top: 1rem;
   padding-left: 10%;
   padding-right: 10%;
 
@@ -82,13 +77,15 @@ export default function Home() {
           alt="Picture of the author"
         />
       </StyledHeaderImage> */}
-      <ErrorBoundary>
-        <StyledBlogEntryPage>
-          <ErrorBoundary>
-            <DocxReader />
-          </ErrorBoundary>
-        </StyledBlogEntryPage>
-      </ErrorBoundary>
+      <Layout>
+        <ErrorBoundary>
+          <StyledBlogEntryPage>
+            <ErrorBoundary>
+              <DocxReader />
+            </ErrorBoundary>
+          </StyledBlogEntryPage>
+        </ErrorBoundary>
+      </Layout>
     </div>
   );
 }

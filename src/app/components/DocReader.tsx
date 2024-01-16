@@ -4,7 +4,6 @@ import BlogImage from "./BlogImage";
 import QuoteContainer from "./QuoteContainer";
 import VideoContainer from "./VideoContainer";
 import HorizontalLine from "./HorizontalLine";
-
 import {
   determineNodeType,
   processNode,
@@ -33,7 +32,6 @@ const DocxReader: React.FC = () => {
         const { path, caption } = imagePaths[domNode.attribs.id];
         return <BlogImage src={path} caption={caption || ""} />;
       } else if (isAQuoteBlock) {
-        //TODO: fix quote block for all but first
         const processedChildren = domNode.children.map((child: any) =>
           processNode(child)
         );
