@@ -2,7 +2,6 @@
 import dynamic from "next/dynamic";
 import styled from "styled-components";
 import { colors } from "./components/utils";
-import Image from "next/image";
 
 const BREAKPOINTS = {
   mobile: "768px",
@@ -16,7 +15,6 @@ const StyledBlogEntryPage = styled.div`
   overflow: auto;
   color: ${colors.darkWhite};
   background-color: ${colors.darkGrey};
-  z-index: 2;
 
   padding-left: 10%;
   padding-right: 10%;
@@ -61,10 +59,9 @@ const StyledHeaderImage = styled.div`
   top: 100;
   height: 200px;
   overflow: hidden;
-  z-index: 1;
 `;
 
-import headerImage from "../../public/images/Dream1.png";
+// import headerImage from "../../public/images/Dream1.png";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 export default function Home() {

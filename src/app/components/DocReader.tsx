@@ -4,6 +4,7 @@ import BlogImage from "./BlogImage";
 import QuoteContainer from "./QuoteContainer";
 import VideoContainer from "./VideoContainer";
 import HorizontalLine from "./HorizontalLine";
+
 import {
   determineNodeType,
   processNode,
@@ -42,10 +43,9 @@ const DocxReader: React.FC = () => {
         const href = domNode?.attribs?.href;
         const videoId = removeYouTubePrefix(href);
         return <VideoContainer videoId={videoId} />;
+      } else if (isAHorizontalLine) {
+        return <HorizontalLine />;
       }
-      // else if (isAHorizontalLine) {
-      //   return <HorizontalLine />;
-      // }
     },
   };
 
