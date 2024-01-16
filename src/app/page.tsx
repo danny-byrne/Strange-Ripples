@@ -1,8 +1,8 @@
 "use client";
 import dynamic from "next/dynamic";
-
 import styled from "styled-components";
 import { colors } from "./components/utils";
+import Image from "next/image";
 
 const BREAKPOINTS = {
   mobile: "768px",
@@ -16,6 +16,7 @@ const StyledBlogEntryPage = styled.div`
   overflow: auto;
   color: ${colors.darkWhite};
   background-color: ${colors.darkGrey};
+  z-index: 2;
 
   padding-left: 10%;
   padding-right: 10%;
@@ -32,7 +33,6 @@ const StyledBlogEntryPage = styled.div`
 
   h1 {
     font-size: 2rem;
-
     @media (min-width: ${BREAKPOINTS.mobile}) {
       font-size: 3rem;
     }
@@ -41,7 +41,7 @@ const StyledBlogEntryPage = styled.div`
   h2 {
     font-size: 1.3rem;
     @media (min-width: 768px) {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
   }
 
@@ -56,15 +56,42 @@ const StyledBlogEntryPage = styled.div`
   }
 `;
 
+const StyledHeaderImage = styled.div`
+  position: absolute;
+  top: 100;
+  height: 200px;
+  overflow: hidden;
+  z-index: 1;
+`;
+
+import headerImage from "../../public/images/Dream1.png";
+import ErrorBoundary from "./components/ErrorBoundary";
+
 export default function Home() {
   const DocxReader = dynamic(() => import("./components/DocReader"), {
     ssr: false,
   });
+
+  // const innerWidth = window.innerWidth;
+
   return (
     <div className="test">
-      <StyledBlogEntryPage>
-        <DocxReader />
-      </StyledBlogEntryPage>
+      {/* future implemenation} */}
+      {/* <StyledHeaderImage>
+        <Image
+          src={headerImage}
+          width={innerWidth}
+          // height={200}
+          alt="Picture of the author"
+        />
+      </StyledHeaderImage> */}
+      <ErrorBoundary>
+        <StyledBlogEntryPage>
+          <ErrorBoundary>
+            <DocxReader />
+          </ErrorBoundary>
+        </StyledBlogEntryPage>
+      </ErrorBoundary>
     </div>
   );
 }

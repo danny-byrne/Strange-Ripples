@@ -7,6 +7,7 @@ const QuoteContainerStyle = styled.div`
   background-color: ${colors.shadedGrey};
   padding: 2px 20px;
   border-radius: 10px;
+  border: 1px solid ${colors.silver};
   margin-top: 20px;
   margin-bottom: 20px;
 `;

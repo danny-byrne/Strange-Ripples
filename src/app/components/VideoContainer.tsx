@@ -66,12 +66,7 @@ const VideoContainer: React.FC<BlogVideoProps> = ({
 
   const opts = {
     width: `${videoWithToUse}`,
-    // height: "390",
     height: `${heightToUse}`,
-    playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
-    },
   };
 
   return (

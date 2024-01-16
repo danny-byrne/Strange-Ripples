@@ -85,10 +85,20 @@ const determineNodeType = (domNode: any) => {
     domNode.attribs.id &&
     imagePaths[domNode.attribs.id];
 
+  const isAHorizontalLine =
+    domNode.type === "tag" &&
+    "attribs" in domNode &&
+    domNode.attribs &&
+    domNode.attribs.id &&
+    domNode.attribs.id === "horizontalLine";
+
+  // console.log({ domNode });
+
   return {
     isAQuoteBlock,
     isAnImageTag,
     isAVideoEmbed,
+    isAHorizontalLine,
   };
 };
 
