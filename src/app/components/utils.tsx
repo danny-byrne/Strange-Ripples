@@ -118,11 +118,17 @@ const colors = {
   shadedGrey: "#666666",
 };
 
+const pixelWidths = {
+  mobile: 768,
+  tablet: 1024,
+  desktop: 1280,
+};
+
 //todo hard code numbers
 const BREAKPOINTS = {
-  mobile: "768px",
-  tablet: "1024px",
-  desktop: "1280px",
+  mobile: `${pixelWidths.mobile}px`,
+  tablet: `${pixelWidths.tablet}px`,
+  desktop: `${pixelWidths.desktop}px`,
 };
 
 export {
