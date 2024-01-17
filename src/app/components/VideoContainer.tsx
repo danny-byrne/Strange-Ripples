@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import YouTube from "react-youtube";
+import { pixelWidths } from "./utils";
 
 const VideoAndCaptionContainer = styled.div`
   display: flex;
@@ -23,12 +24,6 @@ const Caption = styled.div`
 type BlogVideoProps = {
   videoId: string;
   caption?: string;
-};
-
-const BREAKPOINTS = {
-  mobile: 768,
-  tablet: 1024,
-  desktop: 1280,
 };
 
 const ASPECT_RATIO = 9 / 16;
@@ -58,8 +53,8 @@ const VideoContainer: React.FC<BlogVideoProps> = ({
   const videoHeight = videoWidth * ASPECT_RATIO;
 
   const videoWithToUse =
-    viewportWidth > BREAKPOINTS.tablet
-      ? (9 / 10) * BREAKPOINTS.tablet
+    viewportWidth > pixelWidths.tablet
+      ? (9 / 10) * pixelWidths.tablet
       : (9 / 10) * viewportWidth;
 
   const heightToUse = ASPECT_RATIO * videoWithToUse;
@@ -75,7 +70,7 @@ const VideoContainer: React.FC<BlogVideoProps> = ({
         <VideoAndCaptionContainer>
           <VideoCaptionColumn>
             <YouTube opts={opts} videoId={videoId} />
-            <p>Viewport Width: {viewportWidth}px</p>
+
             <Caption>{caption ?? ""}</Caption>
           </VideoCaptionColumn>
         </VideoAndCaptionContainer>
