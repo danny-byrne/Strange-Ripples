@@ -35,19 +35,16 @@ const VideoContainer: React.FC<BlogVideoProps> = ({
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    // Function to update viewport width on resize
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
     };
 
-    // Event listener for window resize
     window.addEventListener("resize", handleResize);
 
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); // Empty dependency array ensures that the effect runs only once on mount
+  }, []);
 
   const videoWidth = viewportWidth * (9 / 10);
   const videoHeight = videoWidth * ASPECT_RATIO;
@@ -70,7 +67,6 @@ const VideoContainer: React.FC<BlogVideoProps> = ({
         <VideoAndCaptionContainer>
           <VideoCaptionColumn>
             <YouTube opts={opts} videoId={videoId} />
-
             <Caption>{caption ?? ""}</Caption>
           </VideoCaptionColumn>
         </VideoAndCaptionContainer>
