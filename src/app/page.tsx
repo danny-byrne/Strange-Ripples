@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import styled from "styled-components";
 import { colors, BREAKPOINTS } from "./components/utils";
 import Layout from "./components/Layout";
+import About from "./components/About";
 
 const StyledBlogEntryPage = styled.div`
   width: 100vw;
@@ -83,6 +84,7 @@ export default function Home() {
             <ErrorBoundary>
               <DocxReader />
             </ErrorBoundary>
+            <About />
           </StyledBlogEntryPage>
         </ErrorBoundary>
       </Layout>
