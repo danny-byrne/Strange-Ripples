@@ -25,8 +25,13 @@ const DocxReader: React.FC = () => {
 
   const options = {
     replace(domNode: any) {
-      const { isAnImageTag, isAQuoteBlock, isAVideoEmbed, isAHorizontalLine } =
-        determineNodeType(domNode);
+      const {
+        isAnImageTag,
+        isAQuoteBlock,
+        isAVideoEmbed,
+        isAHorizontalLine,
+        isADateStamp,
+      } = determineNodeType(domNode);
 
       if (isAnImageTag) {
         const { path, caption } = imagePaths[domNode.attribs.id];
@@ -43,6 +48,8 @@ const DocxReader: React.FC = () => {
         return <VideoContainer videoId={videoId} />;
       } else if (isAHorizontalLine) {
         return <HorizontalLine />;
+      } else if (isADateStamp) {
+        return <div className="datestamp">Published January 18th 2024</div>;
       }
     },
   };

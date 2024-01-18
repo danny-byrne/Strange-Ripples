@@ -78,6 +78,13 @@ const determineNodeType = (domNode: any) => {
   const isAVideoEmbed =
     domNode?.attribs?.id === "video" && domNode?.name === "div";
 
+  const isADateStamp =
+    domNode.type === "tag" &&
+    "attribs" in domNode &&
+    domNode.attribs &&
+    domNode.attribs.id &&
+    domNode.attribs.id === "datestamp";
+
   const isAnImageTag =
     domNode.type === "tag" &&
     "attribs" in domNode &&
@@ -97,6 +104,7 @@ const determineNodeType = (domNode: any) => {
     isAnImageTag,
     isAVideoEmbed,
     isAHorizontalLine,
+    isADateStamp,
   };
 };
 
