@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import YouTube from "react-youtube";
 import { pixelWidths } from "./utils";
+import { useWindowSize } from "../hooks/useWindowSize";
 
 const VideoAndCaptionContainer = styled.div`
   display: flex;
@@ -32,27 +33,14 @@ const VideoContainer: React.FC<BlogVideoProps> = ({
   videoId,
   caption = "",
 }) => {
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const { windowSize } = useWindowSize();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setViewportWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const videoWidth = viewportWidth * (9 / 10);
-  const videoHeight = videoWidth * ASPECT_RATIO;
+  const { width } = windowSize;
 
   const videoWithToUse =
-    viewportWidth > pixelWidths.tablet
+    width > pixelWidths.tablet
       ? (9 / 10) * pixelWidths.tablet
-      : (9 / 10) * viewportWidth;
+      : (9 / 10) * width;
 
   const heightToUse = ASPECT_RATIO * videoWithToUse;
 
