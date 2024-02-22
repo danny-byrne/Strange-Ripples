@@ -1,9 +1,13 @@
 "use client";
+import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import styled from "styled-components";
 import { colors, BREAKPOINTS } from "./components/utils";
 import Layout from "./components/Layout";
 import About from "./components/About";
+// import headerImage from "../../public/images/Dream1.png";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { useState } from "react";
 
 const StyledBlogEntryPage = styled.div`
   width: 100vw;
@@ -57,10 +61,6 @@ const StyledHeaderImage = styled.div`
   overflow: hidden;
 `;
 
-// import headerImage from "../../public/images/Dream1.png";
-import ErrorBoundary from "./components/ErrorBoundary";
-import { useState } from "react";
-
 export default function Home() {
   const DocxReader = dynamic(() => import("./components/DocReader"), {
     ssr: false,
@@ -72,10 +72,11 @@ export default function Home() {
     <Layout>
       <ErrorBoundary>
         <StyledBlogEntryPage>
-          <ErrorBoundary>
-            {loading && "loading"}
+          {/* <ErrorBoundary> */}
+          <Suspense fallback={"Loading.."}>
             <DocxReader setLoading={setLoading} />
-          </ErrorBoundary>
+          </Suspense>
+          {/* </ErrorBoundary> */}
           {!loading && <About />}
         </StyledBlogEntryPage>
       </ErrorBoundary>
