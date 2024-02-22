@@ -4,10 +4,15 @@ import styled from "styled-components";
 
 import DannyImage from "../../../public/images/Danny.jpg";
 import { BREAKPOINTS, colors } from "./utils";
-import { useWindowSize } from "../hooks/useWindowSize";
-import { pixelWidths } from "./utils";
 
 const dimensions = 1;
+
+const ContentRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  height: 270px;
+`;
 
 const AboutContainer = styled.div`
   display: flex;
@@ -15,17 +20,11 @@ const AboutContainer = styled.div`
   gap: 0.2rem;
   align-items: center;
   width: 60%;
+  // height: 600px;
 
   h2 {
-    font-size: 0.6rem;
+    font-size: 1.2rem;
   }
-`;
-
-const ContentRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 1.2rem;
-  height: 220px;
 `;
 
 const VerticalLine = styled.div`
@@ -44,7 +43,7 @@ const ImageWrapper = styled.div`
   width: 30%;
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
-    width: 30%;
+    width: 20%;
   }
 `;
 
@@ -60,7 +59,7 @@ const About: React.FC = () => {
         <h2>About the Author</h2>
         <Text>
           Danny Byrne is a software engineer and musician. He is currently
-          working on a book about his experiences with Ayahuasca and Psilocybin
+          writing book about his experiences with Ayahuasca and Psilocybin
           mushrooms. He creates meditative ceremony music as{" "}
           <a href="harmala.bandcamp.com">Harmala</a>. He lives in Southern
           California with his wife and daughter.

@@ -59,35 +59,26 @@ const StyledHeaderImage = styled.div`
 
 // import headerImage from "../../public/images/Dream1.png";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { useState } from "react";
 
 export default function Home() {
   const DocxReader = dynamic(() => import("./components/DocReader"), {
     ssr: false,
   });
 
-  // const innerWidth = window.innerWidth;
+  const [loading, setLoading] = useState(true);
 
   return (
-    <div className="test">
-      {/* future implemenation} */}
-      {/* <StyledHeaderImage>
-        <Image
-          src={headerImage}
-          width={innerWidth}
-          // height={200}
-          alt="Picture of the author"
-        />
-      </StyledHeaderImage> */}
-      <Layout>
-        <ErrorBoundary>
-          <StyledBlogEntryPage>
-            <ErrorBoundary>
-              <DocxReader />
-            </ErrorBoundary>
-            <About />
-          </StyledBlogEntryPage>
-        </ErrorBoundary>
-      </Layout>
-    </div>
+    <Layout>
+      <ErrorBoundary>
+        <StyledBlogEntryPage>
+          <ErrorBoundary>
+            {loading && "loading"}
+            <DocxReader setLoading={setLoading} />
+          </ErrorBoundary>
+          {!loading && <About />}
+        </StyledBlogEntryPage>
+      </ErrorBoundary>
+    </Layout>
   );
 }

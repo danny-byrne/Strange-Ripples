@@ -11,7 +11,11 @@ import {
   removeYouTubePrefix,
 } from "./utils";
 
-const DocxReader: React.FC = () => {
+interface DocxReaderProps {
+  setLoading: (loading: boolean) => void;
+}
+
+const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
   const [htmlContent, setHtmlContent] = useState("");
 
   useEffect(() => {
@@ -19,6 +23,7 @@ const DocxReader: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         setHtmlContent(data.html);
+        // setLoading(false);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -55,7 +60,7 @@ const DocxReader: React.FC = () => {
   };
 
   const content = parse(htmlContent, options);
-
+  setLoading(false);
   return <>{content}</>;
 };
 
