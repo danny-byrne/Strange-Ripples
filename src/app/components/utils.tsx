@@ -30,6 +30,8 @@ const processNode = (node: any) => {
       return React.createElement(node.name);
     }
 
+    //figure out whaty to do here for links within quote blocks 
+
     // Tag node, process its children
     const processedChildren = node.children.map((child: any) =>
       processNode(child)

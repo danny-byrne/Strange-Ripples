@@ -36,7 +36,10 @@ const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
         isAVideoEmbed,
         isAHorizontalLine,
         isADateStamp,
+        //todo: isALink
       } = determineNodeType(domNode);
+
+      //todo: isALink target="_blank" rel="noopener noreferrer
 
       if (isAnImageTag) {
         const { path, caption } = imagePaths[domNode.attribs.id];

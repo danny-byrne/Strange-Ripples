@@ -12,11 +12,11 @@ const QuoteContainerStyle = styled.div`
   margin-bottom: 20px;
 `;
 
-interface QuoteContainerProps {
-  children: React.ReactNode;
-}
+// interface QuoteContainerProps {
+//   children: React.ReactNode;
+// }
 
-const QuoteContainer: React.FC<QuoteContainerProps> = ({ children }) => {
+const QuoteContainer: React.FC<any> = ({ children }) => {
   return <QuoteContainerStyle>{children}</QuoteContainerStyle>;
 };
 
