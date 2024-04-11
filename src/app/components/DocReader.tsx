@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import BlogImage from "./BlogImage";
-import QuoteContainer from "./QuoteContainer";
+import { QuoteContainer, InfoContainer } from "./QuoteContainer";
 import VideoContainer from "./VideoContainer";
 import HorizontalLine from "./HorizontalLine";
 import {
@@ -36,6 +36,7 @@ const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
         isAVideoEmbed,
         isAHorizontalLine,
         isADateStamp,
+        isAnInfoBlock,
         //todo: isALink
       } = determineNodeType(domNode);
 
@@ -44,12 +45,15 @@ const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
       if (isAnImageTag) {
         const { path, caption } = imagePaths[domNode.attribs.id];
         return <BlogImage src={path} caption={caption || ""} />;
-      } else if (isAQuoteBlock) {
+      } else if (isAQuoteBlock || isAnInfoBlock) {
         const processedChildren = domNode.children.map((child: any) =>
           processNode(child)
         );
-
-        return <QuoteContainer>{processedChildren}</QuoteContainer>;
+        return isAQuoteBlock ? (
+          <QuoteContainer>{processedChildren}</QuoteContainer>
+        ) : (
+          <InfoContainer>{processedChildren}</InfoContainer>
+        );
       } else if (isAVideoEmbed) {
         const href = domNode?.attribs?.href;
         const videoId = removeYouTubePrefix(href);
@@ -63,6 +67,7 @@ const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
   };
 
   const content = parse(htmlContent, options);
+  console.log({ content });
   setLoading(false);
   return <>{content}</>;
 };

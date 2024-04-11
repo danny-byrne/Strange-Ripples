@@ -30,7 +30,7 @@ const processNode = (node: any) => {
       return React.createElement(node.name);
     }
 
-    //figure out whaty to do here for links within quote blocks 
+    //figure out whaty to do here for links within quote blocks
 
     // Tag node, process its children
     const processedChildren = node.children.map((child: any) =>
@@ -77,6 +77,11 @@ const determineNodeType = (domNode: any) => {
     domNode?.name === "div" &&
     domNode?.children?.length > 0;
 
+  const isAnInfoBlock =
+    domNode?.attribs?.id === "info" &&
+    domNode?.name === "div" &&
+    domNode?.children?.length > 0;
+
   const isAVideoEmbed =
     domNode?.attribs?.id === "video" && domNode?.name === "div";
 
@@ -107,6 +112,7 @@ const determineNodeType = (domNode: any) => {
     isAVideoEmbed,
     isAHorizontalLine,
     isADateStamp,
+    isAnInfoBlock,
   };
 };
 
