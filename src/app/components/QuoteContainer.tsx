@@ -6,10 +6,11 @@ import { colors } from "./utils";
 const QuoteContainerStyle = styled.div`
   background-color: ${colors.shadedGrey};
   padding: 2px 20px;
-  // border-radius: 10px;
+  border-radius: 3px;
   border-left: 5px solid ${colors.silver};
   margin-top: 20px;
   margin-bottom: 20px;
+  font-size: 0.9rem;
 `;
 
 // interface QuoteContainerProps {

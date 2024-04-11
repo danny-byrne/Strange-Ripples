@@ -13,6 +13,7 @@ const ImageCaptionColumn = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
 `;
 
 const ImageCaption = styled.div`
