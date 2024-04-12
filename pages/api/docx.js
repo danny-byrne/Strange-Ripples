@@ -32,7 +32,7 @@ function removeFalselyParsedImgTagsRawText(rawText) {
 }
 
 export default async function handler(req, res) {
-  const isTesting = false;
+  const isTesting = true;
   const docToUse = isTesting ? "QuoteBoxText.docx" : "StrangeRipples.docx";
   const docxPath = path.join(process.cwd(), "public", docToUse);
 

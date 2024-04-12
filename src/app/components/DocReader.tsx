@@ -9,6 +9,7 @@ import {
   processNode,
   imagePaths,
   removeYouTubePrefix,
+  createLinkElement,
 } from "./utils";
 
 interface DocxReaderProps {
@@ -37,10 +38,14 @@ const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
         isAHorizontalLine,
         isADateStamp,
         isAnInfoBlock,
-        //todo: isALink
+        isALink,
       } = determineNodeType(domNode);
 
       //todo: isALink target="_blank" rel="noopener noreferrer
+
+      if (isALink) {
+        return createLinkElement(domNode);
+      }
 
       if (isAnImageTag) {
         const { path, caption } = imagePaths[domNode.attribs.id];

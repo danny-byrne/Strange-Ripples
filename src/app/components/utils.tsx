@@ -19,26 +19,29 @@ type QuoteContainerProps = {
 
 const voidElements = ["br" /* add other void elements here */];
 
+const createLinkElement = (domnode: any) => {
+  const href = domnode.attribs.href;
+  const text = domnode.children[0].data;
+  return React.createElement(
+    "a",
+    { href, target: "_blank", rel: "noopener noreferrer" },
+    text
+  );
+};
+
 const processNode = (node: any) => {
-  // console.log({ node });
+  console.log({ node });
   const isATextNode = node.type === "text";
   const isATag = node.type === "tag";
   if (isATextNode) {
     // Text node, just return the text
     return node.data;
   } else if (isATag) {
-    // a tag element will have children that will need to be parsed through recursively
+    // a tag element will have children that will need to be parsed through recursively to handle links, text, etc...
     const isALink = Boolean(node.attribs?.href);
 
     if (isALink) {
-      let href = node.attribs.href;
-      let text = node.children[0].data;
-      // console.log({ node, isALink, href });
-      return React.createElement(
-        "a",
-        { href, target: "_blank", rel: "noopener noreferrer" },
-        text
-      );
+      return createLinkElement(node);
     }
 
     // Check for void elements
@@ -46,8 +49,6 @@ const processNode = (node: any) => {
       // Return a React element representing the void element without children
       return React.createElement(node.name);
     }
-
-    //TODO: figure out what to do here for links within quote blocks
 
     // Tag node, process its children
     const processedChildren = node.children.map((child: any) =>
@@ -89,6 +90,9 @@ const imagePaths: ImageMap = {
 };
 
 const determineNodeType = (domNode: any) => {
+  console.log({ domNode });
+
+  const isALink = Boolean(domNode?.attribs?.href);
   const isAQuoteBlock =
     domNode?.attribs?.id === "quote" &&
     domNode?.name === "div" &&
@@ -130,6 +134,7 @@ const determineNodeType = (domNode: any) => {
     isAHorizontalLine,
     isADateStamp,
     isAnInfoBlock,
+    isALink,
   };
 };
 
@@ -172,4 +177,5 @@ export {
   colors,
   BREAKPOINTS,
   pixelWidths,
+  createLinkElement,
 };
