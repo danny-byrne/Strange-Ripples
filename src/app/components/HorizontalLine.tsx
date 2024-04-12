@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "./utils";
+import { colors } from "./constants";
 
 const Line = styled.div`
   height: 1px;

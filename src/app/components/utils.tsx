@@ -1,5 +1,11 @@
 import React from "react";
 
+import BlogImage from "./BlogImage";
+import { QuoteContainer, InfoContainer } from "./QuoteContainer";
+import VideoContainer from "./VideoContainer";
+import HorizontalLine from "./HorizontalLine";
+import { colors, pixelWidths } from "./constants";
+
 type Element = {
   attribs: Record<string, any>;
   children: Element[];
@@ -138,6 +144,48 @@ const determineNodeType = (domNode: any) => {
   };
 };
 
+const parserOptions = {
+  replace(domNode: any) {
+    const {
+      isAnImageTag,
+      isAQuoteBlock,
+      isAVideoEmbed,
+      isAHorizontalLine,
+      isADateStamp,
+      isAnInfoBlock,
+      isALink,
+    } = determineNodeType(domNode);
+
+    //todo: isALink target="_blank" rel="noopener noreferrer
+
+    if (isALink) {
+      return createLinkElement(domNode);
+    }
+
+    if (isAnImageTag) {
+      const { path, caption } = imagePaths[domNode.attribs.id];
+      return <BlogImage src={path} caption={caption || ""} />;
+    } else if (isAQuoteBlock || isAnInfoBlock) {
+      const processedChildren = domNode.children.map((child: any) =>
+        processNode(child)
+      );
+      return isAQuoteBlock ? (
+        <QuoteContainer>{processedChildren}</QuoteContainer>
+      ) : (
+        <InfoContainer>{processedChildren}</InfoContainer>
+      );
+    } else if (isAVideoEmbed) {
+      const href = domNode?.attribs?.href;
+      const videoId = removeYouTubePrefix(href);
+      return <VideoContainer videoId={videoId} />;
+    } else if (isAHorizontalLine) {
+      return <HorizontalLine />;
+    } else if (isADateStamp) {
+      return <div className="datestamp">Published January 18th 2024</div>;
+    }
+  },
+};
+
 function removeYouTubePrefix(inputString: string): string {
   // Define a regular expression pattern to match the YouTube URL prefix
   const pattern = /https:\/\/youtu\.be\//;
@@ -147,20 +195,6 @@ function removeYouTubePrefix(inputString: string): string {
 
   return resultString;
 }
-//https://calcolor.co/palette/942409461
-const colors = {
-  darkGrey: "#555555",
-  silver: "#bbbbbb",
-  shadedWhite: "#dddddd",
-  darkWhite: "#cccccc",
-  shadedGrey: "#666666",
-};
-
-const pixelWidths = {
-  mobile: 768,
-  tablet: 1024,
-  desktop: 1280,
-};
 
 //todo hard code numbers
 const BREAKPOINTS = {
@@ -178,4 +212,5 @@ export {
   BREAKPOINTS,
   pixelWidths,
   createLinkElement,
+  parserOptions,
 };

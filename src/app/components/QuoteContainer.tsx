@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-import { colors } from "./utils";
+import { colors } from "./constants";
 
 const generateSharedStyles = (borderPosition = "left") => `
   background-color: ${colors.shadedGrey};
