@@ -73,6 +73,7 @@ export default function Home() {
       <ErrorBoundary>
         <StyledBlogEntryPage>
           {/* <ErrorBoundary> */}
+          {/* fix Suspense */}
           <Suspense fallback={"Loading.."}>
             <DocxReader setLoading={setLoading} />
           </Suspense>

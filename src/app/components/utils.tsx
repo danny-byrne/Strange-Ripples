@@ -36,7 +36,6 @@ const createLinkElement = (domnode: any) => {
 };
 
 const processNode = (node: any) => {
-  console.log({ node });
   const isATextNode = node.type === "text";
   const isATag = node.type === "tag";
   if (isATextNode) {
@@ -67,7 +66,6 @@ const processNode = (node: any) => {
 };
 
 const determineNodeType = (domNode: any) => {
-  console.log({ domNode });
   const isUnderLinedText =
     domNode.type === "tag" &&
     domNode?.name === "p" &&
@@ -131,16 +129,16 @@ const parserOptions = {
       isADateStamp,
       isAnInfoBlock,
       isALink,
-      isUnderLinedText,
     } = determineNodeType(domNode);
-    console.log({ isUnderLinedText });
 
-    if (isALink) {
+    if (isALink && !isAVideoEmbed) {
       return createLinkElement(domNode);
     }
-    if (isUnderLinedText) {
-      return <u>{domNode.children[0].data}</u>;
-    }
+
+    //Future implementation when I figure out underlining
+    // if (isUnderLinedText) {
+    //   return <u>{domNode.children[0].data}</u>;
+    // }
 
     if (isAnImageTag) {
       const { path, caption } = imagePaths[domNode.attribs.id];
@@ -155,6 +153,7 @@ const parserOptions = {
         <InfoContainer>{processedChildren}</InfoContainer>
       );
     } else if (isAVideoEmbed) {
+      console.log("rendering a video");
       const href = domNode?.attribs?.href;
       const videoId = removeYouTubePrefix(href);
       return <VideoContainer videoId={videoId} />;

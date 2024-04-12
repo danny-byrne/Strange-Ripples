@@ -1,6 +1,7 @@
 import path from "path";
 import mammoth from "mammoth";
 import { JSDOM } from "jsdom";
+import test from "node:test";
 
 //TODO: fetch the foc grom my google drive
 // https://chat.openai.com/share/332e9201-dc39-4962-aea3-7c1f66ed8b34
@@ -14,7 +15,7 @@ function processDocx(docxPath) {
         const rawText = result.value;
         // Process raw text and convert it to HTML
         const convertedHtml = removeFalselyParsedImgTagsRawText(rawText);
-        // resolve(convertedHtml);
+        // console.log({ rawText, convertedHtml });
         let dom = new JSDOM(convertedHtml);
         // console.log({ convertedHtml });
         // resolve(dom.serialize());
@@ -33,7 +34,7 @@ function removeFalselyParsedImgTagsRawText(rawText) {
 
 export default async function handler(req, res) {
   const isTesting = false;
-  const docToUse = isTesting ? "QuoteBoxText.docx" : "StrangeRipples.docx";
+  const docToUse = isTesting ? "UnitTest.docx" : "StrangeRipples.docx";
   const docxPath = path.join(process.cwd(), "public", docToUse);
 
   try {
