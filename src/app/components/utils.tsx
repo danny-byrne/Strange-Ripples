@@ -20,17 +20,34 @@ type QuoteContainerProps = {
 const voidElements = ["br" /* add other void elements here */];
 
 const processNode = (node: any) => {
-  if (node.type === "text") {
+  // console.log({ node });
+  const isATextNode = node.type === "text";
+  const isATag = node.type === "tag";
+  if (isATextNode) {
     // Text node, just return the text
     return node.data;
-  } else if (node.type === "tag") {
+  } else if (isATag) {
+    // a tag element will have children that will need to be parsed through recursively
+    const isALink = Boolean(node.attribs?.href);
+
+    if (isALink) {
+      let href = node.attribs.href;
+      let text = node.children[0].data;
+      // console.log({ node, isALink, href });
+      return React.createElement(
+        "a",
+        { href, target: "_blank", rel: "noopener noreferrer" },
+        text
+      );
+    }
+
     // Check for void elements
     if (voidElements.includes(node.name)) {
       // Return a React element representing the void element without children
       return React.createElement(node.name);
     }
 
-    //figure out whaty to do here for links within quote blocks
+    //TODO: figure out what to do here for links within quote blocks
 
     // Tag node, process its children
     const processedChildren = node.children.map((child: any) =>

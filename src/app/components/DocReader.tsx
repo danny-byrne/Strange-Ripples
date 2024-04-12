@@ -67,7 +67,7 @@ const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
   };
 
   const content = parse(htmlContent, options);
-  console.log({ content });
+  // console.log({ content });
   setLoading(false);
   return <>{content}</>;
 };
