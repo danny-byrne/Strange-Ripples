@@ -27,12 +27,12 @@ function processDocx(docxPath) {
 function removeFalselyParsedImgTagsRawText(rawText) {
   // Replace HTML entities
   const htmlText = rawText.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-  // return `<html><body>${htmlText}</body></html>`;
+
   return `${htmlText}`;
 }
 
 export default async function handler(req, res) {
-  const isTesting = true;
+  const isTesting = false;
   const docToUse = isTesting ? "QuoteBoxText.docx" : "StrangeRipples.docx";
   const docxPath = path.join(process.cwd(), "public", docToUse);
 
