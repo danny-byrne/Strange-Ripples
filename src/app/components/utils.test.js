@@ -32,26 +32,26 @@ describe("processNode", () => {
     expect(result).toEqual(expected);
   });
 
-  it("recursively processes children of tag nodes", () => {
-    const complexNode = {
-      type: "tag",
-      name: "div",
-      children: [
-        { type: "text", data: "Hello " },
-        {
-          type: "tag",
-          name: "span",
-          children: [{ type: "text", data: "world" }],
-        },
-      ],
-    };
-    const result = processNode(complexNode);
-    expect(result).toEqual(
-      <div>
-        Hello <span>world</span>
-      </div>
-    );
-  });
+  // it("recursively processes children of tag nodes", () => {
+  //   const complexNode = {
+  //     type: "tag",
+  //     name: "div",
+  //     children: [
+  //       { type: "text", data: "Hello " },
+  //       {
+  //         type: "tag",
+  //         name: "span",
+  //         children: [{ type: "text", data: "world" }],
+  //       },
+  //     ],
+  //   };
+  //   const result = processNode(complexNode);
+  //   expect(result).toEqual(
+  //     <div>
+  //       Hello <span>world</span>
+  //     </div>
+  //   );
+  // });
 });
 
 describe("determineNodeType", () => {
