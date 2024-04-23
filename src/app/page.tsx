@@ -54,12 +54,12 @@ const StyledBlogEntryPage = styled.div`
   }
 `;
 
-const StyledHeaderImage = styled.div`
-  position: absolute;
-  top: 100;
-  height: 200px;
-  overflow: hidden;
-`;
+// const StyledHeaderImage = styled.div`
+//   position: absolute;
+//   top: 100;
+//   height: 200px;
+//   overflow: hidden;
+// `;
 
 export default function Home() {
   const DocxReader = dynamic(() => import("./components/DocReader"), {
@@ -74,7 +74,7 @@ export default function Home() {
         <StyledBlogEntryPage>
           {/* <ErrorBoundary> */}
           {/* fix Suspense */}
-          <Suspense fallback={"Loading.."}>
+          <Suspense fallback={<div>'Loading</div>}>
             <DocxReader setLoading={setLoading} />
           </Suspense>
           {/* </ErrorBoundary> */}
