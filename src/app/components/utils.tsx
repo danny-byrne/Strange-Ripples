@@ -153,7 +153,6 @@ const parserOptions = {
         <InfoContainer>{processedChildren}</InfoContainer>
       );
     } else if (isAVideoEmbed) {
-      console.log("rendering a video");
       const href = domNode?.attribs?.href;
       const videoId = removeYouTubePrefix(href);
       return <VideoContainer videoId={videoId} />;

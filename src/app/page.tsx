@@ -54,6 +54,12 @@ const StyledBlogEntryPage = styled.div`
     margin-bottom: 20px;
     width: 100%;
   }
+
+  p:nth-of-type(8)::first-letter {
+    // initial-letter: 2;
+    font-size: 200%;
+    margin-right: 1px;
+  }
 `;
 
 // const StyledHeaderImage = styled.div`
@@ -77,17 +83,18 @@ export default function Home() {
     <Layout>
       <ErrorBoundary>
         <StyledBlogEntryPage>
-          {/* <ErrorBoundary> */}
-          {/* fix Suspense */}
-          <Suspense fallback={<div>'Loading</div>}>
-            <HeaderImage
-              path={UFOImagePath}
-              h1="Strange Ripples"
-              h2="The Bizarre Relationship Between Psychedelics and Dreams"
-            />
-            <DocxReader setLoading={setLoading} />
-          </Suspense>
-          {/* </ErrorBoundary> */}
+          <ErrorBoundary>
+            {/* fix Suspense */}
+            <Suspense fallback={<div>Loading</div>}>
+              <HeaderImage
+                path={UFOImagePath}
+                h1="Strange Ripples"
+                h2="The Bizarre Relationship Between Psychedelics and Dreams, Part I"
+                byText="By Danny Byrne"
+              />
+              <DocxReader setLoading={setLoading} />
+            </Suspense>
+          </ErrorBoundary>
           {!loading && <About />}
         </StyledBlogEntryPage>
       </ErrorBoundary>

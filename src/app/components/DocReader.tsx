@@ -19,8 +19,9 @@ const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
       .catch((err) => console.error(err));
   }, []);
 
-  const content = parse(htmlContent, parserOptions);
-
+  let content: any = parse(htmlContent, parserOptions);
+  content = content.slice(3, content.length);
+  // console.log({ content });
   setLoading(false);
   return <>{content}</>;
 };
