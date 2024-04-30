@@ -1,10 +1,12 @@
 "use client";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+
 import styled from "styled-components";
 import { colors, BREAKPOINTS } from "./components/utils";
 import Layout from "./components/Layout";
 import About from "./components/About";
+import HeaderImage from "./components/HeaderImage";
 // import headerImage from "../../public/images/Dream1.png";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { useState } from "react";
@@ -61,6 +63,9 @@ const StyledBlogEntryPage = styled.div`
 //   overflow: hidden;
 // `;
 
+import UFOImagePath from "/public/images/UFO.jpg";
+// const UFOImagePath = "/public/images/UFO.jpg";
+
 export default function Home() {
   const DocxReader = dynamic(() => import("./components/DocReader"), {
     ssr: false,
@@ -75,6 +80,11 @@ export default function Home() {
           {/* <ErrorBoundary> */}
           {/* fix Suspense */}
           <Suspense fallback={<div>'Loading</div>}>
+            <HeaderImage
+              path={UFOImagePath}
+              h1="Strange Ripples"
+              h2="The Bizarre Relationship Between Psychedelics and Dreams"
+            />
             <DocxReader setLoading={setLoading} />
           </Suspense>
           {/* </ErrorBoundary> */}
