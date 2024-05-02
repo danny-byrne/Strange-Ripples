@@ -9,7 +9,8 @@ import About from "./components/About";
 import HeaderImage from "./components/HeaderImage";
 // import headerImage from "../../public/images/Dream1.png";
 import ErrorBoundary from "./components/ErrorBoundary";
-import { useState } from "react";
+// import { useState } from "react";
+import Loading from "./loading";
 
 const StyledBlogEntryPage = styled.div`
   width: 100vw;
@@ -77,25 +78,23 @@ export default function Home() {
     ssr: false,
   });
 
-  const [loading, setLoading] = useState(true);
-
   return (
     <Layout>
       <ErrorBoundary>
         <StyledBlogEntryPage>
           <ErrorBoundary>
             {/* fix Suspense */}
-            <Suspense fallback={<div>Loading</div>}>
+            <Suspense fallback={<Loading />}>
               <HeaderImage
                 path={UFOImagePath}
                 h1="Strange Ripples"
                 h2="The Bizarre Relationship Between Psychedelics and Dreams, Part I"
                 byText="By Danny Byrne"
               />
-              <DocxReader setLoading={setLoading} />
+              <DocxReader />
             </Suspense>
           </ErrorBoundary>
-          {!loading && <About />}
+          <About />
         </StyledBlogEntryPage>
       </ErrorBoundary>
     </Layout>

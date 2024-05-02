@@ -1,28 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import parse from "html-react-parser";
-
 import { parserOptions } from "./utils";
 
-interface DocxReaderProps {
-  setLoading: (loading: boolean) => void;
-}
+const fetchDoc = async () => {
+  try {
+    const response = await fetch("/api/docx");
+    const data = await response.json();
+    let content = parse(data.html, parserOptions);
+    content = content.slice(3, content.length);
+    return content;
+  } catch (err) {
+    console.error(err);
+  }
+};
 
-const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
-  const [htmlContent, setHtmlContent] = useState("");
+const DocxReader: React.FC = () => {
+  let content = fetchDoc();
 
-  useEffect(() => {
-    fetch("/api/docx")
-      .then((response) => response.json())
-      .then((data) => {
-        setHtmlContent(data.html);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  let content: any = parse(htmlContent, parserOptions);
-  content = content.slice(3, content.length);
-  // console.log({ content });
-  setLoading(false);
   return <>{content}</>;
 };
 
