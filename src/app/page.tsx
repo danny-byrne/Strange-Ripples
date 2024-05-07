@@ -84,15 +84,15 @@ export default function Home() {
         <StyledBlogEntryPage>
           <ErrorBoundary>
             {/* fix Suspense */}
-            <Suspense fallback={<Loading />}>
-              <HeaderImage
+            {/* <Suspense fallback={<Loading />}> */}
+            {/* <HeaderImage
                 path={UFOImagePath}
                 h1="Strange Ripples"
                 h2="The Bizarre Relationship Between Psychedelics and Dreams, Part I"
                 byText="By Danny Byrne"
-              />
-              <DocxReader />
-            </Suspense>
+              /> */}
+            <DocxReader />
+            {/* </Suspense> */}
           </ErrorBoundary>
           <About />
         </StyledBlogEntryPage>

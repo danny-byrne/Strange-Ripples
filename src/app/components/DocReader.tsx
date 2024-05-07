@@ -7,7 +7,7 @@ const fetchDoc = async () => {
     const response = await fetch("/api/docx");
     const data = await response.json();
     let content = parse(data.html, parserOptions);
-    content = content.slice(3, content.length);
+    // content = content.slice(3, content.length);
     return content;
   } catch (err) {
     console.error(err);
