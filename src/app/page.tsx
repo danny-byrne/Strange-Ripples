@@ -56,11 +56,10 @@ const StyledBlogEntryPage = styled.div`
     width: 100%;
   }
 
-  p:nth-of-type(8)::first-letter {
-    // initial-letter: 2;
-    font-size: 200%;
-    margin-right: 1px;
-  }
+  // p:nth-of-type(8)::first-letter {
+  //   font-size: 200%;
+  //   margin-right: 1px;
+  // }
 `;
 
 // const StyledHeaderImage = styled.div`
