@@ -71,7 +71,7 @@ const StyledBlogEntryPage = styled.div`
 
 import UFOImagePath from "/public/images/UFO.jpg";
 // const UFOImagePath = "/public/images/UFO.jpg";
-
+//
 export default function Home() {
   const DocxReader = dynamic(() => import("./components/DocReader"), {
     ssr: false,
