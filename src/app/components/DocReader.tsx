@@ -14,9 +14,13 @@ const fetchDoc = async () => {
   }
 };
 
-const DocxReader: React.FC = () => {
-  let content = fetchDoc();
+interface DocxReaderProps {
+  setLoading: (value: boolean) => void;
+}
 
+const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
+  let content = fetchDoc();
+  // setLoading(false);
   return <>{content}</>;
 };
 

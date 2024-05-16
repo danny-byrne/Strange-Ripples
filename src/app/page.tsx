@@ -1,5 +1,5 @@
 "use client";
-import { Suspense } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 
 import styled from "styled-components";
@@ -62,13 +62,6 @@ const StyledBlogEntryPage = styled.div`
   // }
 `;
 
-// const StyledHeaderImage = styled.div`
-//   position: absolute;
-//   top: 100;
-//   height: 200px;
-//   overflow: hidden;
-// `;
-
 import UFOImagePath from "/public/images/UFO.jpg";
 // const UFOImagePath = "/public/images/UFO.jpg";
 //
@@ -77,23 +70,20 @@ export default function Home() {
     ssr: false,
   });
 
+  const [loading, setLoading] = useState(true);
+
   return (
     <Layout>
       <ErrorBoundary>
         <StyledBlogEntryPage>
-          <ErrorBoundary>
-            {/* fix Suspense */}
-            {/* <Suspense fallback={<Loading />}> */}
-            {/* <HeaderImage
+          {/* <HeaderImage
                 path={UFOImagePath}
                 h1="Strange Ripples"
                 h2="The Bizarre Relationship Between Psychedelics and Dreams, Part I"
                 byText="By Danny Byrne"
               /> */}
-            <DocxReader />
-            {/* </Suspense> */}
-          </ErrorBoundary>
-          <About />
+          <DocxReader setLoading={setLoading} />
+          {loading && <Loading />}
         </StyledBlogEntryPage>
       </ErrorBoundary>
     </Layout>
