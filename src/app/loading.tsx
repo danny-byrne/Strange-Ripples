@@ -7,7 +7,7 @@ const StyledLoadingPage = styled.div`
 
 const LoadingSkeleton = () => {
   const elements = Array(30).fill(
-    <div className="h-4 bg-gray-300 rounded w-3/4 my-2"></div>
+    <div className="h-4 bg-gray-300 rounded w-7/8 my-2"></div>
   );
 
   return (

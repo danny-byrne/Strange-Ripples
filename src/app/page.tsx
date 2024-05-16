@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 
 import styled from "styled-components";
@@ -83,7 +83,8 @@ export default function Home() {
                 byText="By Danny Byrne"
               /> */}
           <DocxReader setLoading={setLoading} />
-          {loading && <Loading />}
+
+          {loading ? <Loading /> : <About />}
         </StyledBlogEntryPage>
       </ErrorBoundary>
     </Layout>

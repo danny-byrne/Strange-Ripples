@@ -20,7 +20,7 @@ interface DocxReaderProps {
 
 const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
   let content = fetchDoc();
-  // setLoading(false);
+  setLoading(false);
   return <>{content}</>;
 };
 
