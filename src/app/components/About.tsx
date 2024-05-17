@@ -62,7 +62,8 @@ const About: React.FC = () => {
           writing book about his experiences with Ayahuasca and Psilocybin
           mushrooms. He creates meditative ceremony music as{" "}
           <a href="harmala.bandcamp.com">Harmala</a>. He lives in Southern
-          California with his wife and daughter.
+          California with his wife and daughter. You can find him on instagram
+          at @ayadreamsproject.
         </Text>
       </AboutContainer>
     </ContentRow>
