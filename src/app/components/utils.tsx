@@ -35,7 +35,7 @@ const createLinkElement = (domnode: any) => {
   );
 };
 
-const processNode = (node: any) => {
+const processNode = (node: any, index: number) => {
   const isATextNode = node.type === "text";
   const isATag = node.type === "tag";
   if (isATextNode) {
@@ -52,16 +52,16 @@ const processNode = (node: any) => {
     // Check for void elements
     if (voidElements.includes(node.name)) {
       // Return a React element representing the void element without children
-      return React.createElement(node.name);
+      return React.createElement(node.name, { key: index });
     }
 
     // Tag node, process its children
-    const processedChildren = node.children.map((child: any) =>
-      processNode(child)
+    const processedChildren = node.children.map(
+      (child: any, childIndex: number) => processNode(child, childIndex)
     );
 
     // Return a React element representing the tag with its processed children
-    return React.createElement(node.name, null, processedChildren);
+    return React.createElement(node.name, { key: index }, processedChildren);
   }
 };
 
@@ -135,29 +135,33 @@ const parserOptions = {
       return createLinkElement(domNode);
     }
 
-    //Future implementation when I figure out underlining
-    // if (isUnderLinedText) {
-    //   return <u>{domNode.children[0].data}</u>;
-    // }
-
     if (isAnImageTag) {
       const { path, caption } = imagePaths[domNode.attribs.id];
       return <BlogImage src={path} caption={caption || ""} />;
     } else if (isAQuoteBlock || isAnInfoBlock) {
-      const processedChildren = domNode.children.map((child: any) =>
-        processNode(child)
+      const processedChildren = domNode.children.map(
+        (child: any, index: number) => processNode(child, index)
       );
       return isAQuoteBlock ? (
-        <QuoteContainer>{processedChildren}</QuoteContainer>
+        <QuoteContainer key={domNode.attribs.key || Math.random()}>
+          {processedChildren}
+        </QuoteContainer>
       ) : (
-        <InfoContainer>{processedChildren}</InfoContainer>
+        <InfoContainer key={domNode.attribs.key || Math.random()}>
+          {processedChildren}
+        </InfoContainer>
       );
     } else if (isAVideoEmbed) {
       const href = domNode?.attribs?.href;
       const videoId = removeYouTubePrefix(href);
-      return <VideoContainer videoId={videoId} />;
+      return (
+        <VideoContainer
+          key={domNode.attribs.key || Math.random()}
+          videoId={videoId}
+        />
+      );
     } else if (isAHorizontalLine) {
-      return <HorizontalLine />;
+      return <HorizontalLine key={domNode.attribs.key || Math.random()} />;
     } else if (isADateStamp) {
       return <div className="datestamp">Published January 18th 2024</div>;
     }

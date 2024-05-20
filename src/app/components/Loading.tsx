@@ -8,7 +8,7 @@ const StyledLoadingPage = styled.div`
 `;
 
 const LoadingSkeleton = () => {
-  const elements = Array.from({ length: 20 }, (_, index) => (
+  const elements = Array.from({ length: 30 }, (_, index) => (
     <div key={index} className="h-4 bg-gray-300 rounded w-7/8 my-2"></div>
   ));
 
