@@ -71,10 +71,6 @@ export default function Home() {
 
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    !loading && console.log({ loading });
-  }, [loading]);
-
   return (
     <Layout>
       <ErrorBoundary>
