@@ -7,9 +7,7 @@ import { colors, BREAKPOINTS } from "./components/utils";
 import Layout from "./components/Layout";
 import About from "./components/About";
 import HeaderImage from "./components/HeaderImage";
-// import headerImage from "../../public/images/Dream1.png";
 import ErrorBoundary from "./components/ErrorBoundary";
-// import { useState } from "react";
 import Loading from "./components/Loading";
 
 const StyledBlogEntryPage = styled.div`
@@ -21,6 +19,7 @@ const StyledBlogEntryPage = styled.div`
   padding-top: 1rem;
   padding-left: 10%;
   padding-right: 10%;
+  // transition: all 2s linear;
 
   @media (min-width: ${BREAKPOINTS.mobile}) {
     padding-left: 20%;
