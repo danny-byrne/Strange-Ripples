@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import parse from "html-react-parser";
 import { parserOptions } from "./utils";
 
@@ -19,7 +19,7 @@ interface DocxReaderProps {
 }
 
 const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
-  let content = fetchDoc();
+  let content = await fetchDoc();
   setLoading(false);
   return <>{content}</>;
 };

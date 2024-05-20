@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { colors, BREAKPOINTS } from "./utils";
 import HorizontalLine from "./HorizontalLine";
+import { layoutDimensions } from "./constants";
 
 const LayoutWrapper = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ const LayoutWrapper = styled.div`
 `;
 
 const TopBar = styled.div`
-  height: 60px;
+  height: ${layoutDimensions.topBarHeight}vh;
   background-color: ${colors.darkGrey};
   color: ${colors.darkWhite};
   display: flex;

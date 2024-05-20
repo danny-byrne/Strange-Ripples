@@ -7,6 +7,15 @@ const colors = {
   shadedGrey: "#666666",
 };
 
+const layoutDimensions = {
+  pageHeight: 100,
+  topBarHeight: 8,
+  loadingPageHeight: 0,
+};
+
+layoutDimensions.loadingPageHeight =
+  layoutDimensions.pageHeight - layoutDimensions.topBarHeight;
+
 const pixelWidths = {
   mobile: 768,
   tablet: 1024,
@@ -42,4 +51,4 @@ const imagePaths: ImageMap = {
   },
 };
 
-export { colors, pixelWidths, imagePaths };
+export { colors, pixelWidths, imagePaths, layoutDimensions };

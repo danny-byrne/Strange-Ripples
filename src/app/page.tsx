@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 import styled from "styled-components";
@@ -10,7 +10,7 @@ import HeaderImage from "./components/HeaderImage";
 // import headerImage from "../../public/images/Dream1.png";
 import ErrorBoundary from "./components/ErrorBoundary";
 // import { useState } from "react";
-import Loading from "./loading";
+import Loading from "./components/Loading";
 
 const StyledBlogEntryPage = styled.div`
   width: 100vw;
@@ -71,6 +71,10 @@ export default function Home() {
   });
 
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    !loading && console.log({ loading });
+  }, [loading]);
 
   return (
     <Layout>

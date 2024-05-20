@@ -5,8 +5,6 @@ import styled from "styled-components";
 import DannyImage from "../../../public/images/Danny.jpg";
 import { BREAKPOINTS, colors } from "./utils";
 
-const dimensions = 1;
-
 const ContentRow = styled.div`
   display: flex;
   flex-direction: row;

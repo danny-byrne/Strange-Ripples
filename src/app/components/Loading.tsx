@@ -1,13 +1,18 @@
 "use client";
 import styled from "styled-components";
+import { layoutDimensions } from "./constants";
 
 const StyledLoadingPage = styled.div`
-  height: 100vh;
+  height: ${layoutDimensions.loadingPageHeight}vh;
+  overflow: hidden;
 `;
 
 const LoadingSkeleton = () => {
-  const elements = Array(30).fill(
-    <div className="h-4 bg-gray-300 rounded w-7/8 my-2"></div>
+  const elements = Array(20).fill(
+    <div
+      key={Math.random()}
+      className="h-4 bg-gray-300 rounded w-7/8 my-2"
+    ></div>
   );
 
   return (
