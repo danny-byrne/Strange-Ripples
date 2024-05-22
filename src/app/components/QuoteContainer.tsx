@@ -7,7 +7,7 @@ const generateSharedStyles = (borderPosition = "left") => `
   background-color: ${colors.shadedGrey};
   padding: 2px 20px;
   border-radius: 3px;
-  border-${borderPosition}: 5px solid ${colors.shadedGrey};
+  border-${borderPosition}: 5px solid ${colors.darkWhite};
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 0.9rem;

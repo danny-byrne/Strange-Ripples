@@ -28,7 +28,7 @@ const AboutContainer = styled.div`
 const VerticalLine = styled.div`
   width: 1px;
   height: 90%;
-  background-color: ${colors.silver};
+  background-color: ${colors.darkWhite};
 `;
 
 const Text = styled.div`
