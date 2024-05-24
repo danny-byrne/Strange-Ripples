@@ -61,7 +61,11 @@ const About: React.FC = () => {
           mushrooms. He creates meditative ceremony music as{" "}
           <a href="harmala.bandcamp.com">Harmala</a>. He lives in Southern
           California with his wife and daughter. You can find him on instagram
-          at @ayadreamsproject.
+          at{" "}
+          <a href="https://www.instagram.com/ayadreamsproject/">
+            @ayadreamsproject
+          </a>
+          .
         </Text>
       </AboutContainer>
     </ContentRow>
