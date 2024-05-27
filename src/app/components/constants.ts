@@ -27,15 +27,22 @@ type ImageMap = {
 };
 
 const imagePaths: ImageMap = {
-  testImage: {
-    id: "testImage",
+  amaringo: {
+    id: "amaringo",
     path: "/images/image1.png",
-    caption: "Some text image",
+    caption:
+      "Ayahuasca artist Pablo Amaringo's paintings frequently depict UFOs and 'entities'",
   },
   carlJungBookImage: {
     id: "carlJungBookImage",
     path: "/images/CarlJungBook.png",
     caption: "Carl Jung explored why UFOs are commonly encountered in dreams",
+  },
+  vennDiagram: {
+    id: "vennDiagram",
+    path: "/images/VennDiagram.png",
+    caption:
+      "For more cool bits about this topic, feel free to visit @ayadreamsproject on instagram",
   },
   magonia: {
     id: "magonia",
@@ -47,7 +54,7 @@ const imagePaths: ImageMap = {
     id: "hynekVallee",
     path: "/images/HynekVallee.png",
     caption:
-      "J. Allen Hynek (1910–1986) was an American astronomer, professor, and ufologist. He is best known for his work as the scientific consultant for the U.S. Air Force's Project Blue Book, which investigated UFO sightings. Initially a skeptic, Hynek eventually became a prominent figure in the study of unidentified flying objects and introduced the classification system for close encounters. Jacques Vallée (born 1939) is a French computer scientist, ufologist, and author. Vallée is known for his research on unidentified flying objects and is a proponent of the extraterrestrial hypothesis. He has also explored alternative theories, including the idea that UFOs are interdimensional or time-traveling phenomena. Vallée's work has contributed significantly to the study of UFO phenomena and the paranormal.",
+      "J. Allen Hynek sand Jacques Vallee. J. Allen Hynek (1910–1986) was an American astronomer, professor, and ufologist. He is best known for his work as the scientific consultant for the U.S. Air Force's Project Blue Book, which investigated UFO sightings. Initially a skeptic, Hynek eventually became a prominent figure in the study of unidentified flying objects and introduced the classification system for close encounters. Jacques Vallée (born 1939) is a French computer scientist, ufologist, and author. Vallée is known for his research on unidentified flying objects and is a proponent of the extraterrestrial hypothesis. He has also explored alternative theories, including the idea that UFOs are interdimensional or time-traveling phenomena. Vallée's work has contributed significantly to the study of UFO phenomena and the paranormal.",
   },
 };
 

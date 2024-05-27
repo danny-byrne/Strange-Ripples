@@ -136,6 +136,7 @@ const parserOptions = {
     }
 
     if (isAnImageTag) {
+      console.log("id:", domNode.attribs.id);
       const { path, caption } = imagePaths[domNode.attribs.id];
       return <BlogImage src={path} caption={caption || ""} />;
     } else if (isAQuoteBlock || isAnInfoBlock) {
