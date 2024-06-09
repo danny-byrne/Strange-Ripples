@@ -136,7 +136,6 @@ const parserOptions = {
     }
 
     if (isAnImageTag) {
-      console.log("id:", domNode.attribs.id);
       const { path, caption } = imagePaths[domNode.attribs.id];
       return <BlogImage src={path} caption={caption || ""} />;
     } else if (isAQuoteBlock || isAnInfoBlock) {
@@ -164,7 +163,7 @@ const parserOptions = {
     } else if (isAHorizontalLine) {
       return <HorizontalLine key={domNode.attribs.key || Math.random()} />;
     } else if (isADateStamp) {
-      return <div className="datestamp">Published January 18th 2024</div>;
+      return <div className="datestamp">Published June 9th 2024</div>;
     }
   },
 };
