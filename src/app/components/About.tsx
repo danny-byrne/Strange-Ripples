@@ -59,13 +59,15 @@ const About: React.FC = () => {
           Danny Byrne is a software engineer and musician. He is currently
           writing a book about his experiences facilitating groups with
           Ayahuasca and Psilocybin mushrooms. He creates meditative ceremony
-          music as <a href="harmala.bandcamp.com">Harmala</a>. He lives in
-          Southern California with his wife and daughter. You can find him on
-          instagram at{" "}
+          music as <a href="harmala.bandcamp.com">Harmala</a>, and the
+          co-founder of <a href="www.harmalatemple.com">Harmala Temple</a>, a
+          psychedelic church. He lives in Southern California with his wife and
+          daughter. You can find him on instagram at{" "}
           <a href="https://www.instagram.com/ayadreamsproject/">
             @ayadreamsproject
-          </a>
-          .
+          </a>{" "}
+          and{" "}
+          <a href="https://www.instagram.com/harmala.music/">@harmala.music</a>.
         </Text>
       </AboutContainer>
     </ContentRow>
