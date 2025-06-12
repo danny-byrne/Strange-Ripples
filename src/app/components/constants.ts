@@ -56,6 +56,18 @@ const imagePaths: ImageMap = {
     caption:
       "J. Allen Hynek sand Jacques Vallee. J. Allen Hynek (1910–1986) was an American astronomer, professor, and ufologist. He is best known for his work as the scientific consultant for the U.S. Air Force's Project Blue Book, which investigated UFO sightings. Initially a skeptic, Hynek eventually became a prominent figure in the study of unidentified flying objects and introduced the classification system for close encounters. Jacques Vallée (born 1939) is a French computer scientist, ufologist, and author. Vallée is known for his research on unidentified flying objects and is a proponent of the extraterrestrial hypothesis. He has also explored alternative theories, including the idea that UFOs are interdimensional or time-traveling phenomena. Vallée's work has contributed significantly to the study of UFO phenomena and the paranormal.",
   },
+  TLCNetflix: {
+    id: "TLCNetflix",
+    path: "/images/TLCNetflix.png",
+  },
+  TLCPlane: {
+    id: "TLCPlane",
+    path: "/images/TLCPlane.png",
+  },
+  TLCRescue: {
+    id: "TLCRescue",
+    path: "/images/TLCRescue.png",
+  },
 };
 
 export { colors, pixelWidths, imagePaths, layoutDimensions };
