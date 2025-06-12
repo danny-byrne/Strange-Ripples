@@ -26,6 +26,7 @@ type BlogImageProps = {
   caption: string;
 };
 //different height for mobile vs desktop
+//test
 const IMAGE_HEIGHT = 500;
 
 const BlogImage: React.FC<BlogImageProps> = ({ src, caption }) => {
