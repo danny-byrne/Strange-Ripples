@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { colors, BREAKPOINTS } from "./components/utils";
 import Layout from "./components/Layout";
 import About from "./components/About";
-import HeaderImage from "./components/HeaderImage";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Loading from "./components/Loading";
 
@@ -61,9 +60,6 @@ const StyledBlogEntryPage = styled.div`
   // }
 `;
 
-import UFOImagePath from "/public/images/UFO.jpg";
-// const UFOImagePath = "/public/images/UFO.jpg";
-//
 export default function Home() {
   const DocxReader = dynamic(() => import("./components/DocReader"), {
     ssr: false,

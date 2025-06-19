@@ -18,7 +18,6 @@ const AboutContainer = styled.div`
   gap: 0.2rem;
   align-items: center;
   width: 60%;
-  // height: 600px;
 
   h2 {
     font-size: 1.2rem;
@@ -62,11 +61,11 @@ const About: React.FC = () => {
           music as <a href="harmala.bandcamp.com">Harmala</a>, and the
           co-founder of <a href="www.harmalatemple.com">Harmala Temple</a>, a
           psychedelic church. He lives in Southern California with his wife and
-          daughter. You can find him on instagram at{" "}
+          daughter. You can find Aya Dreams Project on instagram at{" "}
           <a href="https://www.instagram.com/ayadreamsproject/">
             @ayadreamsproject
           </a>{" "}
-          and{" "}
+          and follow musical happenings at{" "}
           <a href="https://www.instagram.com/harmala.music/">@harmala.music</a>.
         </Text>
       </AboutContainer>
