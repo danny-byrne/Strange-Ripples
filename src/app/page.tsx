@@ -75,12 +75,6 @@ export default function Home() {
     <Layout>
       <ErrorBoundary>
         <StyledBlogEntryPage>
-          {/* <HeaderImage
-                path={UFOImagePath}
-                h1="Strange Ripples"
-                h2="The Bizarre Relationship Between Psychedelics and Dreams, Part I"
-                byText="By Danny Byrne"
-              /> */}
           <DocxReader setLoading={setLoading} />
 
           {loading ? <Loading /> : <About />}
