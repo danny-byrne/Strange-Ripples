@@ -9,10 +9,8 @@ interface HeaderImageProps {
 }
 
 const StyledImage = styled.div`
-  //   position: relative;
   width: 100%;
   height: 250px;
-  //   border-radius: 5px;
   filter: brightness(0.6);
   z-index: 1;
   margin-bottom: 20px;

@@ -24,10 +24,6 @@ const QuoteContainerStyle = styled.div`
   ${generateSharedStyles("left")}
 `;
 
-// interface QuoteContainerProps {
-//   children: React.ReactNode;
-// }
-
 const QuoteContainer: React.FC<any> = ({ children }) => {
   return <QuoteContainerStyle>{children}</QuoteContainerStyle>;
 };
