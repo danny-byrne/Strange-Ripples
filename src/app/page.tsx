@@ -1,13 +1,13 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+import fs from "fs";
+import path from "path";
+import mammoth from "mammoth";
+import parse from "html-react-parser";
 
 import styled from "styled-components";
-import { colors, BREAKPOINTS } from "./components/utils";
+import { colors, BREAKPOINTS, parserOptions } from "./components/utils";
 import Layout from "./components/Layout";
 import About from "./components/About";
 import ErrorBoundary from "./components/ErrorBoundary";
-import Loading from "./components/Loading";
 
 const StyledBlogEntryPage = styled.div`
   width: 100vw;
@@ -18,7 +18,6 @@ const StyledBlogEntryPage = styled.div`
   padding-top: 1rem;
   padding-left: 10%;
   padding-right: 10%;
-  // transition: all 2s linear;
 
   @media (min-width: ${BREAKPOINTS.mobile}) {
     padding-left: 20%;
@@ -53,27 +52,25 @@ const StyledBlogEntryPage = styled.div`
     margin-bottom: 20px;
     width: 100%;
   }
-
-  // p:nth-of-type(8)::first-letter {
-  //   font-size: 200%;
-  //   margin-right: 1px;
-  // }
 `;
 
-export default function Home() {
-  const DocxReader = dynamic(() => import("./components/DocReader"), {
-    ssr: false,
-  });
+function removeFalselyParsedImgTagsRawText(rawText: string): string {
+  return rawText.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+}
 
-  const [loading, setLoading] = useState(true);
+export default async function Home() {
+  const docxPath = path.join(process.cwd(), "public", "StrangeRipples.docx");
+  const buffer = fs.readFileSync(docxPath);
+  const { value: rawText } = await mammoth.convertToHtml({ buffer });
+  const cleaned = removeFalselyParsedImgTagsRawText(rawText);
+  const content = parse(cleaned, parserOptions);
 
   return (
     <Layout>
       <ErrorBoundary>
         <StyledBlogEntryPage>
-          <DocxReader setLoading={setLoading} />
-
-          {loading ? <Loading /> : <About />}
+          {content}
+          <About />
         </StyledBlogEntryPage>
       </ErrorBoundary>
     </Layout>
