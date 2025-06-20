@@ -70,7 +70,8 @@ export default async function Home() {
       <ErrorBoundary>
         <StyledBlogEntryPage>
           {content}
-          <About />
+          (content &&
+          <About />)
         </StyledBlogEntryPage>
       </ErrorBoundary>
     </Layout>
