@@ -122,6 +122,20 @@ const determineNodeType = (domNode: any) => {
 
 const parserOptions = {
   replace(domNode: any) {
+    if (
+      domNode.type === "tag" &&
+      domNode.name === "div" &&
+      domNode.parent &&
+      domNode.parent.name === "p"
+    ) {
+      return (
+        <span key={Math.random()}>
+          {domNode.children?.map((child: any, index: number) =>
+            processNode(child, index)
+          )}
+        </span>
+      );
+    }
     const {
       isAnImageTag,
       isAQuoteBlock,
@@ -138,7 +152,12 @@ const parserOptions = {
 
     if (isAnImageTag) {
       const { path, caption } = imagePaths[domNode.attribs.id];
-      return <BlogImage src={path} caption={caption || ""} />;
+
+      return (
+        <div key={Math.random()}>
+          <BlogImage src={path} caption={caption || ""} />;
+        </div>
+      );
     } else if (isAQuoteBlock || isAnInfoBlock) {
       const processedChildren = domNode.children.map(
         (child: any, index: number) => processNode(child, index)

@@ -23,7 +23,6 @@ export default async function Home() {
       <ErrorBoundary>
         <StyledBlogEntryPage>
           <DocContent html={cleaned} />
-          <About />
         </StyledBlogEntryPage>
       </ErrorBoundary>
     </Layout>
