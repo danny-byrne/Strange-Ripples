@@ -1,10 +1,11 @@
 "use client";
+
 import { useState, useEffect } from "react";
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 0,
+    height: 0,
   });
 
   useEffect(() => {
@@ -15,8 +16,9 @@ export const useWindowSize = () => {
       });
     };
 
-    window.addEventListener("resize", handleResize);
+    handleResize(); // Set initial size immediately on mount
 
+    window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
