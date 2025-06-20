@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* src/app/globals.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
