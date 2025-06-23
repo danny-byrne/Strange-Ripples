@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-
 import styled from "styled-components";
 import { colors } from "./constants";
 
 const generateSharedStyles = (borderPosition = "left") => `
-  background-color: ${colors.shadedGrey};
+  // background-color: ${colors.shadedGrey};
+  background-color: red;
   padding: 2px 20px;
   border-radius: 3px;
   border-${borderPosition}: 5px solid ${colors.darkWhite};
@@ -30,6 +30,7 @@ const QuoteContainer: React.FC<any> = ({ children }) => {
 };
 
 const InfoContainer: React.FC<any> = ({ children }) => {
+  console.log({ children });
   return <InfoContainerStyle>{children}</InfoContainerStyle>;
 };
 

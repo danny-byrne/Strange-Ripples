@@ -17,7 +17,7 @@ export default function DocContent({ html }: { html: string }) {
   return (
     <>
       {parse(html, parserOptions)}
-      <About />
+      {/* <About /> */}
     </>
   );
 }

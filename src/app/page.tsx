@@ -13,7 +13,9 @@ function removeFalselyParsedImgTagsRawText(rawText: string): string {
 }
 
 export default async function Home() {
-  const docxPath = path.join(process.cwd(), "public", "StrangeRipples.docx");
+  const isTesting = true;
+  const docToUse = isTesting ? "UnitTest.docx" : "StrangeRipples.docx";
+  const docxPath = path.join(process.cwd(), "public", docToUse);
   const buffer = fs.readFileSync(docxPath);
   const { value: rawText } = await mammoth.convertToHtml({ buffer });
   const cleaned = removeFalselyParsedImgTagsRawText(rawText);

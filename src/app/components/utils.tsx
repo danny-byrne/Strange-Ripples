@@ -122,6 +122,7 @@ const determineNodeType = (domNode: any) => {
 
 const parserOptions = {
   replace(domNode: any) {
+    // console.log({ domNode });
     if (
       domNode.type === "tag" &&
       domNode.name === "div" &&
@@ -145,6 +146,18 @@ const parserOptions = {
       isAnInfoBlock,
       isALink,
     } = determineNodeType(domNode);
+
+    isAnInfoBlock && console.log({ isAnInfoBlock, domNode });
+
+    // console.log({
+    //   isAnImageTag,
+    //   isAQuoteBlock,
+    //   isAVideoEmbed,
+    //   isAHorizontalLine,
+    //   isADateStamp,
+    //   isAnInfoBlock,
+    //   isALink,
+    // });
 
     if (isALink && !isAVideoEmbed) {
       return createLinkElement(domNode);
