@@ -122,21 +122,36 @@ const determineNodeType = (domNode: any) => {
 
 const parserOptions = {
   replace(domNode: any) {
-    // console.log({ domNode });
     if (
       domNode.type === "tag" &&
-      domNode.name === "div" &&
-      domNode.parent &&
-      domNode.parent.name === "p"
+      domNode.name === "p" &&
+      domNode.children?.some((child: { name: string }) => child.name === "div")
     ) {
+      // Unwrap the <p> and replace with a fragment
       return (
-        <span key={Math.random()}>
-          {domNode.children?.map((child: any, index: number) =>
+        <>
+          {domNode.children.map((child: any, index: number) =>
             processNode(child, index)
           )}
-        </span>
+        </>
       );
     }
+
+    // if (
+    //   domNode.type === "tag" &&
+    //   domNode.name === "div" &&
+    //   domNode.parent &&
+    //   domNode.parent.name === "p"
+    // ) {
+    //   return (
+    //     <span key={Math.random()}>
+    //       {domNode.children?.map((child: any, index: number) =>
+    //         processNode(child, index)
+    //       )}
+    //     </span>
+    //   );
+    // }
+
     const {
       isAnImageTag,
       isAQuoteBlock,
@@ -149,16 +164,6 @@ const parserOptions = {
 
     isAnInfoBlock && console.log({ isAnInfoBlock, domNode });
 
-    // console.log({
-    //   isAnImageTag,
-    //   isAQuoteBlock,
-    //   isAVideoEmbed,
-    //   isAHorizontalLine,
-    //   isADateStamp,
-    //   isAnInfoBlock,
-    //   isALink,
-    // });
-
     if (isALink && !isAVideoEmbed) {
       return createLinkElement(domNode);
     }
@@ -168,7 +173,7 @@ const parserOptions = {
 
       return (
         <div key={Math.random()}>
-          <BlogImage src={path} caption={caption || ""} />;
+          <BlogImage src={path} caption={caption || ""} />
         </div>
       );
     } else if (isAQuoteBlock || isAnInfoBlock) {

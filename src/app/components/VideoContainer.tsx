@@ -51,16 +51,12 @@ const VideoContainer: React.FC<BlogVideoProps> = ({
   };
 
   return (
-    <>
-      <p>
-        <VideoAndCaptionContainer>
-          <VideoCaptionColumn>
-            <YouTube opts={opts} videoId={videoId} />
-            <Caption>{caption ?? ""}</Caption>
-          </VideoCaptionColumn>
-        </VideoAndCaptionContainer>
-      </p>
-    </>
+    <VideoAndCaptionContainer>
+      <VideoCaptionColumn>
+        <YouTube opts={opts} videoId={videoId} />
+        <Caption>{caption ?? ""}</Caption>
+      </VideoCaptionColumn>
+    </VideoAndCaptionContainer>
   );
 };
 
