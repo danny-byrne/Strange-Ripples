@@ -1,5 +1,4 @@
 "use client";
-
 import { useServerInsertedHTML } from "next/navigation";
 import { useState } from "react";
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";

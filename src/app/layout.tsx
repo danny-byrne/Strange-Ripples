@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import StyledComponentsRegistry from "./lib/registry";
-import "../app/globals.css";
 
 export const metadata: Metadata = {
   title: "Aya Dreams Project",

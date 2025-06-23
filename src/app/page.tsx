@@ -3,10 +3,10 @@ import path from "path";
 import mammoth from "mammoth";
 
 import Layout from "./components/Layout";
-import About from "./components/About";
 import StyledBlogEntryPage from "./components/StyledBlogEntryPage";
 import ErrorBoundary from "./components/ErrorBoundary";
 import DocContent from "./components/DocContent";
+import TestBox from "./components/TestBox";
 
 function removeFalselyParsedImgTagsRawText(rawText: string): string {
   return rawText.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
@@ -29,4 +29,10 @@ export default async function Home() {
       </ErrorBoundary>
     </Layout>
   );
+
+  // return (
+  //   <main>
+  //     <TestBox />
+  //   </main>
+  // );
 }

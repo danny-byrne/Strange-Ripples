@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import parse from "html-react-parser";
-import { parserOptions } from "./utils";
+import { parserOptions } from "../utils";
 
 const fetchDoc = async (): Promise<JSX.Element[]> => {
   try {
