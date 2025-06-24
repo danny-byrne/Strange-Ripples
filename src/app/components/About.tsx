@@ -45,6 +45,7 @@ const ImageWrapper = styled.div`
   }
 `;
 
+// Todo: fix padding top
 const About: React.FC = () => {
   return (
     <ContentRow>

@@ -7,6 +7,7 @@ import VideoContainer from "./VideoContainer";
 import HorizontalLine from "./HorizontalLine";
 import { colors, pixelWidths, imagePaths } from "./constants";
 
+// Todo: enforce this
 type Element = {
   attribs: Record<string, any>;
   children: Element[];
@@ -120,6 +121,7 @@ const determineNodeType = (domNode: any) => {
   };
 };
 
+// Todo: Clean this up
 const parserOptions = {
   replace(domNode: any) {
     const {

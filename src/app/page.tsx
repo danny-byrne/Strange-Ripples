@@ -20,27 +20,20 @@ function removeFalselyParsedImgTagsRawText(rawText: string): string {
 }
 
 export default async function Home() {
-  const isTesting = true;
+  const isTesting = false;
   const docToUse = isTesting ? "UnitTest.docx" : "StrangeRipples.docx";
   const docxPath = path.join(process.cwd(), "public", docToUse);
   const buffer = fs.readFileSync(docxPath);
   const { value: rawText } = await mammoth.convertToHtml({ buffer });
   const cleaned = removeFalselyParsedImgTagsRawText(rawText);
-  console.log({ rawText, cleaned });
 
   return (
     <Layout>
       <ErrorBoundary>
-        {/* <StyledBlogEntryPage> */}
-        <DocContent html={cleaned} />
-        {/* </StyledBlogEntryPage> */}
+        <StyledBlogEntryPage>
+          <DocContent html={cleaned} />
+        </StyledBlogEntryPage>
       </ErrorBoundary>
     </Layout>
   );
-
-  // return (
-  //   <main>
-  //     <TestBox />
-  //   </main>
-  // );
 }

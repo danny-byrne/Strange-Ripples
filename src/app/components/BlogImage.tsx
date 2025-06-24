@@ -28,6 +28,7 @@ type BlogImageProps = {
 };
 //different height for mobile vs desktop
 
+// Todo: pass this in from a CMS
 const IMAGE_HEIGHT = 500;
 
 const BlogImage: React.FC<BlogImageProps> = ({ src, caption }) => {

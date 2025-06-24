@@ -26,6 +26,7 @@ type ImageMap = {
   [key: string]: { id: string; path: string; caption?: string };
 };
 
+// TOdo: pass this info in from <img tag
 const imagePaths: ImageMap = {
   amaringo: {
     id: "amaringo",
