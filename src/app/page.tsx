@@ -25,20 +25,15 @@ export default async function Home() {
   const docxPath = path.join(process.cwd(), "public", docToUse);
   const buffer = fs.readFileSync(docxPath);
   const { value: rawText } = await mammoth.convertToHtml({ buffer });
-  console.log({ rawText });
   const cleaned = removeFalselyParsedImgTagsRawText(rawText);
-
-  const preSanitizedHtml = cleaned.replace(
-    /<p>(\s*<div[\s\S]*?<\/div>\s*)<\/p>/g,
-    "$1"
-  );
+  console.log({ rawText, cleaned });
 
   return (
     <Layout>
       <ErrorBoundary>
-        <StyledBlogEntryPage>
-          <DocContent html={preSanitizedHtml} />
-        </StyledBlogEntryPage>
+        {/* <StyledBlogEntryPage> */}
+        <DocContent html={cleaned} />
+        {/* </StyledBlogEntryPage> */}
       </ErrorBoundary>
     </Layout>
   );

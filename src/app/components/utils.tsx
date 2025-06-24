@@ -122,36 +122,6 @@ const determineNodeType = (domNode: any) => {
 
 const parserOptions = {
   replace(domNode: any) {
-    if (
-      domNode.type === "tag" &&
-      domNode.name === "p" &&
-      domNode.children?.some((child: { name: string }) => child.name === "div")
-    ) {
-      // Unwrap the <p> and replace with a fragment
-      return (
-        <>
-          {domNode.children.map((child: any, index: number) =>
-            processNode(child, index)
-          )}
-        </>
-      );
-    }
-
-    // if (
-    //   domNode.type === "tag" &&
-    //   domNode.name === "div" &&
-    //   domNode.parent &&
-    //   domNode.parent.name === "p"
-    // ) {
-    //   return (
-    //     <span key={Math.random()}>
-    //       {domNode.children?.map((child: any, index: number) =>
-    //         processNode(child, index)
-    //       )}
-    //     </span>
-    //   );
-    // }
-
     const {
       isAnImageTag,
       isAQuoteBlock,

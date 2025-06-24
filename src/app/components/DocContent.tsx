@@ -6,13 +6,13 @@ import { parserOptions } from "./utils";
 import About from "./About";
 
 export default function DocContent({ html }: { html: string }) {
-  const [mounted, setMounted] = useState(false);
+  // const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
 
-  if (!mounted) return null;
+  // if (!mounted) return null;
 
   return (
     <>
