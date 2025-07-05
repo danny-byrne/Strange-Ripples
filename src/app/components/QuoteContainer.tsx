@@ -33,7 +33,6 @@ const QuoteContainer: React.FC<any> = ({ children }) => {
 };
 
 const InfoContainer: React.FC<any> = ({ children }) => {
-  console.log({ children });
   return <InfoContainerStyle>{children}</InfoContainerStyle>;
 };
 

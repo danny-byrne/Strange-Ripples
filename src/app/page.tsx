@@ -21,6 +21,7 @@ function removeFalselyParsedImgTagsRawText(rawText: string): string {
 
 export default async function Home() {
   const isTesting = false;
+  //TODO : maybe pull this doc from google or a CDN, research
   const docToUse = isTesting ? "UnitTest.docx" : "StrangeRipples.docx";
   const docxPath = path.join(process.cwd(), "public", docToUse);
   const buffer = fs.readFileSync(docxPath);

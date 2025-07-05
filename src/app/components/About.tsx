@@ -6,14 +6,15 @@ import styled from "styled-components";
 import DannyImage from "../../../public/images/Danny.jpg";
 import { BREAKPOINTS, colors } from "./utils";
 
-const ContentRow = styled.div`
+const AboutContentContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1.2rem;
-  height: 270px;
+  height: 240px;
+  padding-top: 10px;
 `;
 
-const AboutContainer = styled.div`
+const BioContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -48,13 +49,13 @@ const ImageWrapper = styled.div`
 // Todo: fix padding top
 const About: React.FC = () => {
   return (
-    <ContentRow>
+    <AboutContentContainer>
       <ImageWrapper>
         <Image src={DannyImage} alt="" style={{ borderRadius: "6rem" }} />
       </ImageWrapper>
 
       <VerticalLine />
-      <AboutContainer>
+      <BioContainer>
         <h2>About the Author</h2>
         <Text>
           Danny Byrne is a software engineer and musician. He is currently
@@ -70,8 +71,8 @@ const About: React.FC = () => {
           and follow musical happenings at{" "}
           <a href="https://www.instagram.com/harmala.music/">@harmala.music</a>.
         </Text>
-      </AboutContainer>
-    </ContentRow>
+      </BioContainer>
+    </AboutContentContainer>
   );
 };
 

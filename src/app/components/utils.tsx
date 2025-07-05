@@ -134,8 +134,6 @@ const parserOptions = {
       isALink,
     } = determineNodeType(domNode);
 
-    isAnInfoBlock && console.log({ isAnInfoBlock, domNode });
-
     if (isALink && !isAVideoEmbed) {
       return createLinkElement(domNode);
     }
