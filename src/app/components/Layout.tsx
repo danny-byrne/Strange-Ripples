@@ -35,7 +35,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <LayoutWrapper>
       <TopBar>
-        <h1 className="hello">Aya Dreams Project</h1>
+        <h1>Aya Dreams Project</h1>
       </TopBar>
       <HorizontalLine />
       {props.children}
