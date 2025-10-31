@@ -17,9 +17,6 @@ const generateSharedStyles = (borderPosition = "left") => `
   // font-size: 2rem !important;
 `;
 
-// Use the shared styles for a regular object style
-
-// Use the shared styles for styled-components
 const InfoContainerStyle = styled.div`
   ${generateSharedStyles("bottom")}
 `;
