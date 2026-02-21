@@ -6,7 +6,7 @@ import { colors, BREAKPOINTS } from "./utils";
 const StyledBlogEntryPage = styled.div`
   width: 100vw;
   display: block;
-  overflow: auto;
+  overflow: visible;
   color: ${colors.darkWhite};
   background-color: ${colors.darkGrey};
   padding-top: 1rem;

@@ -2,7 +2,7 @@ This is the original Project that will become Docx-to-React transpiler, a tool f
 
 When making changes to a piece of writing, each change has to be propogated across multiple outlets, making it unmanageable.
 
-The idea is that writers have multiple outputs for their content; substack, medium, personal blogs, published material.
+The idea is that writers have multiple outputs for their content; substack, medium, personal blogs, published material, but one source of truth for that content.
 
 Markup is specified using <bracket> syntax withing the .docx itself, Docx-To-React sees the markup and creates React components.
 
