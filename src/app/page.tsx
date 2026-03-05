@@ -7,7 +7,7 @@ export const dynamic = "force-static";
 import Layout from "./components/Layout";
 import StyledBlogEntryPage from "./components/StyledBlogEntryPage";
 import ErrorBoundary from "./components/ErrorBoundary";
-import DocContent from "./components/DocContent";
+import DocHtml from "./components/DocHtml";
 
 function removeFalselyParsedImgTagsRawText(rawText: string): string {
   return (
@@ -33,7 +33,7 @@ export default async function Home() {
     <Layout>
       <ErrorBoundary>
         <StyledBlogEntryPage>
-          <DocContent html={cleaned} />
+          <DocHtml html={cleaned} />
         </StyledBlogEntryPage>
       </ErrorBoundary>
     </Layout>
