@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "format": "prettier --write .",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
   },
   "dependencies": {
     "@types/node": "20.4.2",
@@ -29,7 +31,10 @@
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "babel-plugin-styled-components": "^2.1.4",
-    "eslint": "^8.45.0"
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^10.1.8"
   }
 }

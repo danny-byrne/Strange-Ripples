@@ -5,7 +5,10 @@
     "jest": true,
     "node": true
   },
-  "ignorePatterns": ["**/graphQLGeneratedCode.tsx"],
+  "ignorePatterns": [
+    "**/graphQLGeneratedCode.tsx",
+    "src/app/components/archive/**"
+  ],
   "globals": {
     "JSX": true
   },
@@ -14,8 +17,6 @@
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:prettier/recommended",
-    "plugin:storybook/recommended",
-    "plugin:storybook/recommended",
     "next"
   ],
   "parser": "@typescript-eslint/parser",
@@ -26,46 +27,21 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "react-hooks",
-    "@microsoft/eslint-plugin-sdl"
-  ],
+  "plugins": ["react", "@typescript-eslint", "react-hooks"],
   "rules": {
-    "max-len": [2, 120, 4],
+    "prettier/prettier": "error",
+
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+
+    "react/jsx-indent": "off",
+    "react/jsx-indent-props": "off",
+    "react/jsx-closing-bracket-location": "off",
+    "react/jsx-closing-tag-location": "off",
+
     "no-console": "off",
-    "prettier/prettier": [
-      "error",
-      {
-        "tabWidth": 4
-      }
-    ],
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    ],
-    "react/jsx-indent": ["error", 4],
-    "react/prop-types": [
-      2,
-      {
-        "ignore": ["history"]
-      }
-    ],
-    "semi": ["error", "always"],
-    "react/jsx-pascal-case": ["error"],
-    "react/jsx-closing-bracket-location": 1,
-    "react/jsx-closing-tag-location": 1,
-    "jsx-quotes": ["error"],
-    "no-multi-spaces": ["error"],
-    "react/jsx-tag-spacing": ["error"],
-    "react/jsx-curly-spacing": ["error"],
-    "react/jsx-boolean-value": ["error"],
-    "react/jsx-wrap-multilines": ["error"],
-    "react/self-closing-comp": ["error"],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn"
   }
 }

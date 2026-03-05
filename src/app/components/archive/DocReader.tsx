@@ -1,35 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { parserOptions } from "../utils";
 
-const fetchDoc = async (): Promise<JSX.Element[]> => {
-  try {
-    const response = await fetch("/api/docx");
-    const data = await response.json();
-    let content = parse(data.html, parserOptions);
+type ParsedDoc = string | React.ReactElement | React.ReactElement[] | null;
 
-    return content as JSX.Element[];
-  } catch (err) {
-    console.error(err);
-    return [];
-  }
+const fetchDoc = async (): Promise<ParsedDoc> => {
+  const response = await fetch("/api/docx");
+  const data = await response.json();
+  return parse(data.html, parserOptions) as ParsedDoc;
 };
 
-interface DocxReaderProps {
-  setLoading: (value: boolean) => void;
+interface DocReaderProps {
+  setLoading: (isLoading: boolean) => void;
 }
 
-const DocxReader: React.FC<DocxReaderProps> = ({ setLoading }) => {
-  const [displayedContent, setDisplayedContent] = useState<JSX.Element[]>([]);
+const DocReader: React.FC<DocReaderProps> = ({ setLoading }) => {
+  const [displayedContent, setDisplayedContent] = useState<ParsedDoc>(null);
 
   useEffect(() => {
     fetchDoc().then((content) => {
       setDisplayedContent(content);
       setLoading(false);
     });
-  }, []);
+  }, [setLoading]);
 
   return <>{displayedContent}</>;
 };
 
-export default DocxReader;
+export default DocReader;

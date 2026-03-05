@@ -7,24 +7,6 @@ import VideoContainer from "./VideoContainer";
 import HorizontalLine from "./HorizontalLine";
 import { colors, pixelWidths, imagePaths } from "./constants";
 
-// Todo: enforce this
-type Element = {
-  attribs: Record<string, any>;
-  children: Element[];
-  endIndex: null | number;
-  name: string;
-  next: Element | null;
-  parent: Element | null;
-  prev: Element | null;
-  startIndex: null | number;
-  type: string;
-  data: string;
-};
-
-type QuoteContainerProps = {
-  content: Element[];
-};
-
 const voidElements = ["br" /* add other void elements here */];
 
 const createLinkElement = (domnode: any) => {
@@ -33,7 +15,7 @@ const createLinkElement = (domnode: any) => {
   return React.createElement(
     "a",
     { href, target: "_blank", rel: "noopener noreferrer" },
-    text
+    text,
   );
 };
 
@@ -59,7 +41,7 @@ const processNode = (node: any, index: number) => {
 
     // Tag node, process its children
     const processedChildren = node.children.map(
-      (child: any, childIndex: number) => processNode(child, childIndex)
+      (child: any, childIndex: number) => processNode(child, childIndex),
     );
 
     // Return a React element representing the tag with its processed children
@@ -148,7 +130,7 @@ const parserOptions = {
       );
     } else if (isAQuoteBlock || isAnInfoBlock) {
       const processedChildren = domNode.children.map(
-        (child: any, index: number) => processNode(child, index)
+        (child: any, index: number) => processNode(child, index),
       );
       return isAQuoteBlock ? (
         <QuoteContainer key={domNode.attribs.key || Math.random()}>

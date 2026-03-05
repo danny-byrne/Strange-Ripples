@@ -3,6 +3,24 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "./constants";
 
+// Todo: enforce this
+// type Element = {
+//   attribs: Record<string, any>;
+//   children: Element[];
+//   endIndex: null | number;
+//   name: string;
+//   next: Element | null;
+//   parent: Element | null;
+//   prev: Element | null;
+//   startIndex: null | number;
+//   type: string;
+//   data: string;
+// };
+
+// type QuoteContainerProps = {
+//   content: Element[];
+// };
+
 const generateSharedStyles = (borderPosition = "left") => `
   background-color: ${colors.shadedGrey};
   // background-color: red;

@@ -2,11 +2,12 @@ import fs from "fs";
 import path from "path";
 import mammoth from "mammoth";
 
+export const dynamic = "force-static";
+
 import Layout from "./components/Layout";
 import StyledBlogEntryPage from "./components/StyledBlogEntryPage";
 import ErrorBoundary from "./components/ErrorBoundary";
 import DocContent from "./components/DocContent";
-import TestBox from "./components/TestBox";
 
 function removeFalselyParsedImgTagsRawText(rawText: string): string {
   return (

@@ -2,11 +2,12 @@
 import { useServerInsertedHTML } from "next/navigation";
 import { useState } from "react";
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
+import type { ReactNode } from "react";
 
 export default function StyledComponentsRegistry({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const [sheet] = useState(() => new ServerStyleSheet());
 
