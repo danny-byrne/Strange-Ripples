@@ -160,16 +160,16 @@ const parserOptions = {
         </InfoContainer>
       );
     } else if (isAVideoEmbed) {
-      return null;
+      // return null;
 
-      // const href = domNode?.attribs?.href;
-      // const videoId = removeYouTubePrefix(href);
-      // return (
-      //   <VideoContainer
-      //     key={domNode.attribs.key || Math.random()}
-      //     videoId={videoId}
-      //   />
-      // );
+      const href = domNode?.attribs?.href;
+      const videoId = removeYouTubePrefix(href);
+      return (
+        <VideoContainer
+          key={domNode.attribs.key || Math.random()}
+          videoId={videoId}
+        />
+      );
     } else if (isAHorizontalLine) {
       return <HorizontalLine key={domNode.attribs.key || Math.random()} />;
     } else if (isADateStamp) {
