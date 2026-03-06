@@ -1,22 +1,18 @@
-// src/app/components/DocHtml.tsx
+import * as parse5 from "parse5";
 import { imagePaths } from "./docConstants";
 
-function escapeAttr(s: string) {
-  return s.replace(/"/g, "&quot;");
-}
+function canonicalize(html: string) {
+  // Parse as a fragment so we do not introduce <html>/<body> wrappers.
+  const fragment = parse5.parseFragment(html);
 
-function youtubeIdFromUrl(url: string) {
-  if (!url) return "";
-  if (url.includes("youtu.be/"))
-    return url.split("youtu.be/")[1]?.split(/[?&]/)[0] ?? "";
-  if (url.includes("watch?v="))
-    return url.split("watch?v=")[1]?.split(/[?&]/)[0] ?? "";
-  return "";
+  // Serialize back to HTML, parse5 normalizes tag structure the way a browser would.
+  return parse5.serialize(fragment);
 }
 
 export function transformDocHtml(html: string) {
   let out = html;
 
+  // your existing replacements...
   out = out.replace(
     /<div\s+id=quote[^>]*>([\s\S]*?)<\/div>/g,
     (_m, inner) =>
@@ -35,54 +31,60 @@ export function transformDocHtml(html: string) {
 
   out = out.replace(
     /<div\s+id=horizontalLine[^>]*>\s*<\/div>/g,
-    `<hr class="doc-hr" />`,
+    `<hr class="doc-hr">`,
   );
 
   out = out.replace(
     /<div\s+id=video[^>]*>[\s\S]*?<a[^>]*href="([^"]+)"[^>]*>[\s\S]*?<\/a>[\s\S]*?<\/div>/g,
     (_m, href) => {
-      const id = youtubeIdFromUrl(href);
+      const id = href.includes("youtu.be/")
+        ? href.split("youtu.be/")[1]?.split(/[?&]/)[0]
+        : href.includes("watch?v=")
+          ? href.split("watch?v=")[1]?.split(/[?&]/)[0]
+          : "";
+
       if (!id) return "";
-      const embed = `https://www.youtube.com/embed/${escapeAttr(id)}`;
+      const embed = `https://www.youtube.com/embed/${id}`;
+
       return `
-      <div class="video-block">
-        <div class="video-frame">
-          <iframe
-            src="${embed}"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+        <div class="video-block">
+          <div class="video-frame">
+            <iframe
+              src="${embed}"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
-      </div>
-    `;
+      `;
     },
   );
 
   out = out.replace(/<img\s+id=([a-zA-Z0-9_-]+)\s*\/?>/g, (_m, id) => {
     const entry = (imagePaths as any)[id];
     if (!entry) return "";
+
     const src = entry.path;
     const caption = entry.caption ?? "";
 
     return `
       <figure class="doc-image">
-        <img src="${escapeAttr(src)}" alt="${escapeAttr(caption || id)}" loading="lazy" />
+        <img src="${src}" alt="${caption || id}" loading="lazy">
         ${caption ? `<figcaption>${caption}</figcaption>` : ""}
       </figure>
     `;
   });
 
-  return out;
+  // ✅ This is the key line, normalize the HTML into a browser-like canonical DOM.
+  out = canonicalize(out);
+
+  return out.trim();
 }
 
 export default function DocHtml({ html }: { html: string }) {
   const finalHtml = transformDocHtml(html);
-  console.log("finalHtml length", finalHtml.length);
-  console.log(
-    "finalHtml hash",
-    require("crypto").createHash("sha1").update(finalHtml).digest("hex"),
-  );
+
   return (
     <div
       className="doc-content"
