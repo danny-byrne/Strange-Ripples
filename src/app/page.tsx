@@ -8,6 +8,7 @@ import Layout from "./components/Layout";
 import StyledBlogEntryPage from "./components/StyledBlogEntryPage";
 import ErrorBoundary from "./components/ErrorBoundary";
 import DocHtml from "./components/DocHtml";
+import About from "./components/About";
 
 function removeFalselyParsedImgTagsRawText(rawText: string): string {
   return (
@@ -31,14 +32,12 @@ export default async function Home() {
 
   return (
     <Layout>
-      {/* <ErrorBoundary> */}
-      {/* <StyledBlogEntryPage> */}
-      <main>
-        <DocHtml html={cleaned} />
-      </main>
-      {/* <main>Hello</main> */}
-      {/* </StyledBlogEntryPage> */}
-      {/* </ErrorBoundary> */}
+      <ErrorBoundary>
+        <StyledBlogEntryPage>
+          <DocHtml html={cleaned} />
+          <About />
+        </StyledBlogEntryPage>
+      </ErrorBoundary>
     </Layout>
   );
 }

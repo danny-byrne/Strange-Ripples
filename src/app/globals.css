@@ -1,63 +1,124 @@
 /* src/app/globals.css */
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
-body {
-  font-family: "Inter", sans-serif;
-}
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Base reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html,
 body {
-  height: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  padding: 0;
+}
+
+/* App base */
+:root {
+  --fg: 243, 243, 243;
+  --bg: 26, 26, 26;
+
+  --panel: rgba(255, 255, 255, 0.06);
+  --rule: rgba(255, 255, 255, 0.28);
+  --rule-strong: rgba(255, 255, 255, 0.45);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: "Inter", sans-serif;
+  color: rgb(var(--fg));
+  background: rgb(var(--bg));
+  -webkit-overflow-scrolling: touch;
 }
 
+/* Safer mobile scrolling defaults */
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: none;
+}
+
+/* Default typography for server-rendered doc HTML */
+.doc-content {
+  color: rgb(var(--fg));
+}
+
+.doc-content h1 {
+  font-size: 2rem;
+  line-height: 1.1;
+  margin: 18px 0 12px;
+}
+
+@media (min-width: 480px) {
+  .doc-content h1 {
+    font-size: 3rem;
+  }
+}
+
+.doc-content h2 {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  margin: 18px 0 10px;
+}
+
+@media (min-width: 768px) {
+  .doc-content h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.doc-content p {
+  margin: 20px 0;
+  width: 100%;
+  line-height: 1.6;
+}
+
+.doc-content a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+.doc-content em {
+  font-style: italic;
+}
+
+/* Date stamp */
+.datestamp {
+  margin: 14px 0 12px;
+  opacity: 0.9;
+}
+
+/* Quote / Info blocks */
 .quote-block {
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: var(--panel);
   padding: 10px 20px;
-  border-left: 5px solid #f3f3f3;
+  border-left: 5px solid rgb(var(--fg));
   margin: 20px 0;
   border-radius: 4px;
 }
 
 .info-block {
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: var(--panel);
   padding: 10px 20px;
-  border-bottom: 5px solid #f3f3f3;
+  border-bottom: 5px solid rgb(var(--fg));
   margin: 20px 0;
   border-radius: 4px;
 }
 
+/* Horizontal rule */
 .doc-hr {
+  border: none;
+  height: 1px;
+  background: var(--rule);
   margin: 24px 0;
-  opacity: 0.3;
 }
 
+/* Images */
 .doc-image {
   display: flex;
   flex-direction: column;
@@ -69,14 +130,18 @@ body {
 .doc-image img {
   max-width: 100%;
   height: auto;
+  display: block;
+  border-radius: 8px;
 }
 
 .doc-image figcaption {
   font-size: 0.85rem;
   font-style: italic;
   opacity: 0.9;
+  text-align: center;
 }
 
+/* Video embeds */
 .video-block {
   display: flex;
   justify-content: center;
@@ -86,9 +151,12 @@ body {
 .video-frame {
   width: min(90vw, 720px);
   aspect-ratio: 16 / 9;
+  position: relative;
 }
 
 .video-frame iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
