@@ -39,7 +39,7 @@ const Text = styled.div`
 
 const ImageWrapper = styled.div`
   position: relative;
-  width: 30%;
+  width: 10;
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     width: 20%;
@@ -51,7 +51,12 @@ const About: React.FC = () => {
   return (
     <AboutContentContainer>
       <ImageWrapper>
-        <Image src={DannyImage} alt="" style={{ borderRadius: "6rem" }} />
+        <Image
+          src={DannyImage}
+          alt=""
+          style={{ borderRadius: "6rem" }}
+          width={200}
+        />
       </ImageWrapper>
 
       <VerticalLine />
