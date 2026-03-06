@@ -7,7 +7,6 @@ import StyledBlogEntryPage from "./components/StyledBlogEntryPage";
 import ErrorBoundary from "./components/ErrorBoundary";
 import DocContent from "./components/DocContent";
 import TestBox from "./components/TestBox";
-import ScrollUnlock from "./components/ScrollUnlock";
 
 function removeFalselyParsedImgTagsRawText(rawText: string): string {
   return (
