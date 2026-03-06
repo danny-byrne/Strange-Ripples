@@ -7,6 +7,7 @@ import StyledBlogEntryPage from "./components/StyledBlogEntryPage";
 import ErrorBoundary from "./components/ErrorBoundary";
 import DocContent from "./components/DocContent";
 import TestBox from "./components/TestBox";
+import ScrollUnlock from "./components/ScrollUnlock";
 
 function removeFalselyParsedImgTagsRawText(rawText: string): string {
   return (
@@ -27,11 +28,11 @@ export default async function Home() {
   const buffer = fs.readFileSync(docxPath);
   const { value: rawText } = await mammoth.convertToHtml({ buffer });
   const cleaned = removeFalselyParsedImgTagsRawText(rawText);
-
   return (
     <Layout>
       <ErrorBoundary>
         <StyledBlogEntryPage>
+          <ScrollUnlock />
           <DocContent html={cleaned} />
         </StyledBlogEntryPage>
       </ErrorBoundary>
