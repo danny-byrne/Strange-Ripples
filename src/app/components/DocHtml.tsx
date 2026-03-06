@@ -38,25 +38,26 @@ export function transformDocHtml(html: string) {
     `<hr class="doc-hr" />`,
   );
 
-  out = out.replace(/<div\s+id=video[^>]*>([\s\S]*?)<\/div>/g, (_m, inner) => {
-    const urlMatch = inner.match(/https?:\/\/[^\s"<]+/);
-    const id = youtubeIdFromUrl(urlMatch?.[0] ?? "");
-    if (!id) return "";
-    const embed = `https://www.youtube.com/embed/${escapeAttr(id)}`;
-
-    return `
-        <div class="video-block">
-          <div class="video-frame">
-            <iframe
-              src="${embed}"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
+  out = out.replace(
+    /<div\s+id=video[^>]*>[\s\S]*?<a[^>]*href="([^"]+)"[^>]*>[\s\S]*?<\/a>[\s\S]*?<\/div>/g,
+    (_m, href) => {
+      const id = youtubeIdFromUrl(href);
+      if (!id) return "";
+      const embed = `https://www.youtube.com/embed/${escapeAttr(id)}`;
+      return `
+      <div class="video-block">
+        <div class="video-frame">
+          <iframe
+            src="${embed}"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
-      `;
-  });
+      </div>
+    `;
+    },
+  );
 
   out = out.replace(/<img\s+id=([a-zA-Z0-9_-]+)\s*\/?>/g, (_m, id) => {
     const entry = (imagePaths as any)[id];
@@ -77,5 +78,16 @@ export function transformDocHtml(html: string) {
 
 export default function DocHtml({ html }: { html: string }) {
   const finalHtml = transformDocHtml(html);
-  return <div dangerouslySetInnerHTML={{ __html: finalHtml }} />;
+  console.log("finalHtml length", finalHtml.length);
+  console.log(
+    "finalHtml hash",
+    require("crypto").createHash("sha1").update(finalHtml).digest("hex"),
+  );
+  return (
+    <div
+      className="doc-content"
+      suppressHydrationWarning
+      dangerouslySetInnerHTML={{ __html: finalHtml }}
+    />
+  );
 }
