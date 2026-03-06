@@ -32,7 +32,6 @@ export default async function Home() {
     <Layout>
       <ErrorBoundary>
         <StyledBlogEntryPage>
-          <ScrollUnlock />
           <DocContent html={cleaned} />
         </StyledBlogEntryPage>
       </ErrorBoundary>

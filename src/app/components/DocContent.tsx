@@ -11,7 +11,7 @@ export default function DocContent({ html }: { html: string }) {
   return (
     <>
       {content}
-      {content ? <About /> : null}
+      {/* {content ? <About /> : null} */}
     </>
   );
 }
