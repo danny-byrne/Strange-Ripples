@@ -1,13 +1,13 @@
 "use client";
+
+import React, { useState } from "react";
 import { useServerInsertedHTML } from "next/navigation";
-import { useState } from "react";
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
-import type { ReactNode } from "react";
 
 export default function StyledComponentsRegistry({
   children,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
 }) {
   const [sheet] = useState(() => new ServerStyleSheet());
 
@@ -16,6 +16,9 @@ export default function StyledComponentsRegistry({
     sheet.instance.clearTag();
     return <>{styles}</>;
   });
+
+  // ✅ without this, hydration mismatches are very common
+  if (typeof window !== "undefined") return <>{children}</>;
 
   return (
     <StyleSheetManager sheet={sheet.instance}>{children}</StyleSheetManager>

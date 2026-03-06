@@ -124,7 +124,7 @@ const parserOptions = {
       const { path, caption } = imagePaths[domNode.attribs.id];
 
       return (
-        <div key={Math.random()}>
+        <div key={domNode.attribs.key || domNode.attribs?.id}>
           <BlogImage src={path} caption={caption || ""} />
         </div>
       );
@@ -133,11 +133,11 @@ const parserOptions = {
         (child: any, index: number) => processNode(child, index),
       );
       return isAQuoteBlock ? (
-        <QuoteContainer key={domNode.attribs.key || Math.random()}>
+        <QuoteContainer key={domNode.attribs.key || domNode.attribs?.id}>
           {processedChildren}
         </QuoteContainer>
       ) : (
-        <InfoContainer key={domNode.attribs.key || Math.random()}>
+        <InfoContainer key={domNode.attribs.key || domNode.attribs?.id}>
           {processedChildren}
         </InfoContainer>
       );
@@ -146,12 +146,14 @@ const parserOptions = {
       const videoId = removeYouTubePrefix(href);
       return (
         <VideoContainer
-          key={domNode.attribs.key || Math.random()}
+          key={domNode.attribs.key || domNode.attribs?.id}
           videoId={videoId}
         />
       );
     } else if (isAHorizontalLine) {
-      return <HorizontalLine key={domNode.attribs.key || Math.random()} />;
+      return (
+        <HorizontalLine key={domNode.attribs.key || domNode.attribs?.id} />
+      );
     } else if (isADateStamp) {
       return <div className="datestamp">Published June 9th 2024</div>;
     }

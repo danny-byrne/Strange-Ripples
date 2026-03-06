@@ -31,11 +31,13 @@ export default async function Home() {
 
   return (
     <Layout>
-      <ErrorBoundary>
-        <StyledBlogEntryPage>
-          <DocHtml html={cleaned} />
-        </StyledBlogEntryPage>
-      </ErrorBoundary>
+      {/* <ErrorBoundary> */}
+      {/* <StyledBlogEntryPage> */}
+      <main>
+        <DocHtml html={cleaned} />
+      </main>
+      {/* </StyledBlogEntryPage> */}
+      {/* </ErrorBoundary> */}
     </Layout>
   );
 }
