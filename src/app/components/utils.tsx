@@ -33,7 +33,7 @@ const createLinkElement = (domnode: any) => {
   return React.createElement(
     "a",
     { href, target: "_blank", rel: "noopener noreferrer" },
-    text
+    text,
   );
 };
 
@@ -59,7 +59,7 @@ const processNode = (node: any, index: number) => {
 
     // Tag node, process its children
     const processedChildren = node.children.map(
-      (child: any, childIndex: number) => processNode(child, childIndex)
+      (child: any, childIndex: number) => processNode(child, childIndex),
     );
 
     // Return a React element representing the tag with its processed children
@@ -148,7 +148,7 @@ const parserOptions = {
       );
     } else if (isAQuoteBlock || isAnInfoBlock) {
       const processedChildren = domNode.children.map(
-        (child: any, index: number) => processNode(child, index)
+        (child: any, index: number) => processNode(child, index),
       );
       return isAQuoteBlock ? (
         <QuoteContainer key={domNode.attribs.key || Math.random()}>
@@ -160,14 +160,16 @@ const parserOptions = {
         </InfoContainer>
       );
     } else if (isAVideoEmbed) {
-      const href = domNode?.attribs?.href;
-      const videoId = removeYouTubePrefix(href);
-      return (
-        <VideoContainer
-          key={domNode.attribs.key || Math.random()}
-          videoId={videoId}
-        />
-      );
+      return null;
+
+      // const href = domNode?.attribs?.href;
+      // const videoId = removeYouTubePrefix(href);
+      // return (
+      //   <VideoContainer
+      //     key={domNode.attribs.key || Math.random()}
+      //     videoId={videoId}
+      //   />
+      // );
     } else if (isAHorizontalLine) {
       return <HorizontalLine key={domNode.attribs.key || Math.random()} />;
     } else if (isADateStamp) {

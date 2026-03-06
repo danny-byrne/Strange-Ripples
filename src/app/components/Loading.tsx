@@ -4,7 +4,7 @@ import { layoutDimensions } from "./constants";
 
 const StyledLoadingPage = styled.div`
   height: ${layoutDimensions.loadingPageHeight}vh;
-  overflow: hidden;
+  // overflow: hidden;
 `;
 
 const LoadingSkeleton = () => {

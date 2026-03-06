@@ -5,6 +5,12 @@
 /* src/app/globals.css */
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
+html,
+body {
+  touch-action: pan-y;
+  overscroll-behavior-y: auto;
+}
+
 body {
   font-family: "Inter", sans-serif;
 }
