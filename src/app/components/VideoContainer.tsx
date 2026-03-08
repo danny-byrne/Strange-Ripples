@@ -38,10 +38,10 @@ const VideoContainer: React.FC<BlogVideoProps> = ({
 
   const { width } = windowSize;
 
+  const ratio = 9 / 10;
+
   const videoWithToUse =
-    width > pixelWidths.tablet
-      ? (9 / 10) * pixelWidths.tablet
-      : (9 / 10) * width;
+    width > pixelWidths.tablet ? ratio * pixelWidths.tablet : ratio * width;
 
   const heightToUse = ASPECT_RATIO * videoWithToUse;
 

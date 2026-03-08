@@ -1,0 +1,39 @@
+.aboutContentContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  height: 240px;
+  padding-top: 10px;
+}
+
+.bioContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+  width: 60%;
+}
+
+.bioContainer h2 {
+  font-size: 1.2rem;
+}
+
+.verticalLine {
+  width: 1px;
+  height: 90%;
+  background-color: #f3f3f3;
+}
+
+.text {
+  display: block;
+  font-size: 0.7em;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  flex: 0 0 180px;
+  overflow: hidden;
+  border-radius: 6rem;
+}

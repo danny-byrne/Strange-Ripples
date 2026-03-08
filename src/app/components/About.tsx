@@ -1,73 +1,34 @@
 "use client";
+
 import React from "react";
 import Image from "next/image";
-import styled from "styled-components";
-
 import DannyImage from "../../../public/images/Danny.jpg";
-import { BREAKPOINTS, colors } from "./utils";
+import styles from "./About.module.css";
 
-const AboutContentContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 1.2rem;
-  height: 240px;
-  padding-top: 10px;
-`;
-
-const BioContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  align-items: center;
-  width: 60%;
-
-  h2 {
-    font-size: 1.2rem;
-  }
-`;
-
-const VerticalLine = styled.div`
-  width: 1px;
-  height: 90%;
-  background-color: ${colors.darkWhite};
-`;
-
-const Text = styled.div`
-  display: block;
-  font-size: 0.8rem;
-`;
-
-const ImageWrapper = styled.div`
-  position: relative;
-  width: 10;
-
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    width: 20%;
-  }
-`;
-
-// Todo: fix padding top
 const About: React.FC = () => {
   return (
-    <AboutContentContainer>
-      <ImageWrapper>
+    <div className={styles.aboutContentContainer}>
+      <div className={styles.imageWrapper}>
         <Image
           src={DannyImage}
           alt=""
-          style={{ borderRadius: "6rem" }}
-          width={200}
+          fill
+          sizes="180px"
+          style={{ objectFit: "cover" }}
         />
-      </ImageWrapper>
+      </div>
 
-      <VerticalLine />
-      <BioContainer>
+      <div className={styles.verticalLine} />
+
+      <div className={styles.bioContainer}>
         <h2>About the Author</h2>
-        <Text>
+        <div className={styles.text}>
           Danny Byrne is a software engineer and musician. He is currently
           writing a book about his experiences facilitating groups with
           Ayahuasca and Psilocybin mushrooms. He creates meditative ceremony
-          music as <a href="harmala.bandcamp.com">Harmala</a>, and the
-          co-founder of <a href="www.harmalatemple.com">Harmala Temple</a>, a
+          music as <a href="https://harmala.bandcamp.com">Harmala</a>, and the
+          co-founder of{" "}
+          <a href="https://www.harmalatemple.com">Harmala Temple</a>, a
           psychedelic church. He lives in Southern California with his wife and
           daughter. You can find Aya Dreams Project on instagram at{" "}
           <a href="https://www.instagram.com/ayadreamsproject/">
@@ -75,9 +36,9 @@ const About: React.FC = () => {
           </a>{" "}
           and follow musical happenings at{" "}
           <a href="https://www.instagram.com/harmala.music/">@harmala.music</a>.
-        </Text>
-      </BioContainer>
-    </AboutContentContainer>
+        </div>
+      </div>
+    </div>
   );
 };
 
