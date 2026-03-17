@@ -123,7 +123,7 @@ const determineNodeType = (domNode: any) => {
 
 // Todo: Clean this up
 const parserOptions = {
-  replace(domNode: any) {
+  replace(domNode: any, index: number) {
     const {
       isAnImageTag,
       isAQuoteBlock,
@@ -142,7 +142,7 @@ const parserOptions = {
       const { path, caption } = imagePaths[domNode.attribs.id];
 
       return (
-        <div key={Math.random()}>
+        <div key={`img-${domNode.name}-${index}`}>
           <BlogImage src={path} caption={caption || ""} />
         </div>
       );
@@ -151,11 +151,11 @@ const parserOptions = {
         (child: any, index: number) => processNode(child, index),
       );
       return isAQuoteBlock ? (
-        <QuoteContainer key={domNode.attribs.key || Math.random()}>
+        <QuoteContainer key={`quote-${domNode.name}-${index}`}>
           {processedChildren}
         </QuoteContainer>
       ) : (
-        <InfoContainer key={domNode.attribs.key || Math.random()}>
+        <InfoContainer key={`info-${domNode.name}-${index}`}>
           {processedChildren}
         </InfoContainer>
       );
@@ -166,14 +166,18 @@ const parserOptions = {
       const videoId = removeYouTubePrefix(href);
       return (
         <VideoContainer
-          key={domNode.attribs.key || Math.random()}
+          key={`video-${domNode.name}-${index}`}
           videoId={videoId}
         />
       );
     } else if (isAHorizontalLine) {
-      return <HorizontalLine key={domNode.attribs.key || Math.random()} />;
+      return <HorizontalLine key={`hr-${domNode.name}-${index}`} />;
     } else if (isADateStamp) {
-      return <div className="datestamp">Published June 9th 2024</div>;
+      return (
+        <div key="date-stamp" className="datestamp">
+          Published June 9th 2024
+        </div>
+      );
     }
   },
 };
