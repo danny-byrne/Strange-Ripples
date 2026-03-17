@@ -27,12 +27,18 @@ type QuoteContainerProps = {
 
 const voidElements = ["br" /* add other void elements here */];
 
-const createLinkElement = (domnode: any) => {
+const createLinkElement = (domnode: any, key?: number | string) => {
   const href = domnode.attribs.href;
-  const text = domnode.children[0].data;
+  const text = domnode.children[0]?.data ?? "";
+
   return React.createElement(
     "a",
-    { href, target: "_blank", rel: "noopener noreferrer" },
+    {
+      key,
+      href,
+      target: "_blank",
+      rel: "noopener noreferrer",
+    },
     text,
   );
 };
@@ -48,7 +54,7 @@ const processNode = (node: any, index: number) => {
     const isALink = Boolean(node.attribs?.href);
 
     if (isALink) {
-      return createLinkElement(node);
+      return createLinkElement(node, index);
     }
 
     // Check for void elements
@@ -123,7 +129,7 @@ const determineNodeType = (domNode: any) => {
 
 // Todo: Clean this up
 const parserOptions = {
-  replace(domNode: any, index: number) {
+  replace(domNode: any) {
     const {
       isAnImageTag,
       isAQuoteBlock,
@@ -142,7 +148,7 @@ const parserOptions = {
       const { path, caption } = imagePaths[domNode.attribs.id];
 
       return (
-        <div key={`img-${domNode.name}-${index}`}>
+        <div>
           <BlogImage src={path} caption={caption || ""} />
         </div>
       );
@@ -151,33 +157,20 @@ const parserOptions = {
         (child: any, index: number) => processNode(child, index),
       );
       return isAQuoteBlock ? (
-        <QuoteContainer key={`quote-${domNode.name}-${index}`}>
-          {processedChildren}
-        </QuoteContainer>
+        <QuoteContainer>{processedChildren}</QuoteContainer>
       ) : (
-        <InfoContainer key={`info-${domNode.name}-${index}`}>
-          {processedChildren}
-        </InfoContainer>
+        <InfoContainer>{processedChildren}</InfoContainer>
       );
     } else if (isAVideoEmbed) {
       // return null;
 
       const href = domNode?.attribs?.href;
       const videoId = removeYouTubePrefix(href);
-      return (
-        <VideoContainer
-          key={`video-${domNode.name}-${index}`}
-          videoId={videoId}
-        />
-      );
+      return <VideoContainer videoId={videoId} />;
     } else if (isAHorizontalLine) {
-      return <HorizontalLine key={`hr-${domNode.name}-${index}`} />;
+      return <HorizontalLine />;
     } else if (isADateStamp) {
-      return (
-        <div key="date-stamp" className="datestamp">
-          Published June 9th 2024
-        </div>
-      );
+      return <div className="datestamp">Published June 9th 2024</div>;
     }
   },
 };
