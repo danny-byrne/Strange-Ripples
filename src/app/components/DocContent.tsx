@@ -7,20 +7,20 @@ import About from "./About";
 
 export default function DocContent({ html }: { html: string }) {
   const content = useMemo(() => parse(html, parserOptions), [html]);
-  const [showAbout, setShowAbout] = useState(false);
+  // const [showAbout, setShowAbout] = useState(false);
 
-  useEffect(() => {
-    const id = window.setTimeout(() => {
-      setShowAbout(true);
-    }, 1200);
+  // useEffect(() => {
+  //   const id = window.setTimeout(() => {
+  //     setShowAbout(true);
+  //   }, 1200);
 
-    return () => window.clearTimeout(id);
-  }, []);
+  //   return () => window.clearTimeout(id);
+  // }, []);
 
   return (
     <>
       {content}
-      {showAbout ? <About /> : null}
+      {/* {showAbout ? <About /> : null} */}
     </>
   );
 }
