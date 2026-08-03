@@ -19,3 +19,16 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Tests
+
+Run the conversion tests with:
+
+```bash
+npm test
+```
+
+The tests cover the HTML-cleanup contract, convert `public/UnitTest.docx` as an
+end-to-end fixture, and verify that markup IDs select the expected React
+components and props. Add a marker to that document and its expected output to
+the conversion and component tests when extending the DOCX markup language.
